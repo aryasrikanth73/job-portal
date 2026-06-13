@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Finance & Accounting Career Ecosystem</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Plus Jakarta Sans for Headings, Inter for Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* =========================================
+           DESIGN SYSTEM & CSS VARIABLES
+           ========================================= */
+        :root {
+            /* Color Palette */
+            --primary-navy: #0F172A;
+            --primary-navy-dark: #071126;
+            --royal-blue: #2563EB;
+            --royal-blue-hover: #1D4ED8;
+            --sky-blue: #60A5FA;
+            --sky-blue-soft: #EFF6FF;
+            --success-green: #10B981;
+            --success-green-soft: #D1FAE5;
+            --warning-gold: #F59E0B;
+            --bg-light: #F8FAFC;
+            --bg-off-white: #F1F5F9;
+            --white: #FFFFFF;
+            
+            /* Text Colors */
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --text-light: #94A3B8;
+            
+            /* Fluid Spacing System */
+            --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+            --space-sm: clamp(1rem, 2vw, 1.5rem);
+            --space-md: clamp(1.5rem, 4vw, 2.5rem);
+            --space-lg: clamp(2rem, 6vw, 4rem);
+            --space-xl: clamp(4rem, 8vw, 8rem);
+            
+            /* Radii & Shadows */
+            --radius-sm: 8px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-pill: 100px;
+            
+            --shadow-subtle: 0 4px 20px rgba(15, 23, 42, 0.03);
+            --shadow-float: 0 12px 32px rgba(15, 23, 42, 0.08);
+            --shadow-glow-blue: 0 8px 32px rgba(37, 99, 235, 0.15);
+            --shadow-glow-dark: 0 8px 32px rgba(15, 23, 42, 0.4);
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* =========================================
+           GLOBAL RESETS & TYPOGRAPHY
+           ========================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            background-color: var(--white);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--primary-navy);
+            line-height: 1.1;
+        }
+
+        p { line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: var(--transition-smooth); }
+
+        /* Fluid Typography */
+        .display-hero { font-size: clamp(2rem, 7vw, 4.5rem); letter-spacing: -0.04em; }
+        .title-section { font-size: clamp(1.75rem, 5vw, 3rem); margin-bottom: var(--space-sm); }
+        .subtitle-section { font-size: clamp(0.95rem, 2.5vw, 1.25rem); color: var(--text-muted); max-width: 600px; }
+        .text-fluid-lg { font-size: clamp(1rem, 3vw, 1.25rem); }
+        .text-fluid-sm { font-size: clamp(0.875rem, 2vw, 1rem); }
+
+        /* Mobile Touch Targets */
+        button, .btn, .category-pill, .nav-link, select, input {
+            min-height: 44px; 
+        }
+
+        /* Utilities */
+        .bg-navy { background-color: var(--primary-navy); color: var(--white); }
+        .bg-navy-dark { background-color: var(--primary-navy-dark); color: var(--white); }
+        .bg-light-gray { background-color: var(--bg-light); }
+        .text-gradient-blue {
+            background: linear-gradient(135deg, var(--sky-blue), var(--royal-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-padding { padding: clamp(40px, 6vw, 80px) 0; }
+
+        .img-cover { object-fit: cover; width: 100%; height: 100%; }
+
+        /* =========================================
+           BUTTONS & BADGES
+           ========================================= */
+        .btn-premium {
+            background: var(--royal-blue);
+            color: var(--white);
+            border: none;
+            padding: 0 clamp(16px, 3vw, 24px); 
+            border-radius: var(--radius-md); 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            min-height: 44px; 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: var(--shadow-glow-blue);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn-premium:hover {
+            background: var(--royal-blue-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.25);
+            color: var(--white);
+        }
+
+        .btn-outline-premium {
+            background: transparent;
+            color: var(--primary-navy);
+            border: 1.5px solid rgba(15, 23, 42, 0.15); 
+            padding: 0 clamp(16px, 3vw, 24px); 
+            border-radius: var(--radius-md); 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            min-height: 44px; 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-outline-premium:hover {
+            border-color: var(--primary-navy);
+            background: var(--bg-light);
+            color: var(--primary-navy);
+        }
+
+        /* NAVBAR AUTH BUTTONS (Login / Sign Up) */
+        .nav-auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-auth {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 46px; /* Strict height requirement */
+            padding: 0 24px;
+            border-radius: 12px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap; /* Prevent wrapping */
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            flex: 1; /* Equal widths */
+            max-width: 140px; /* Compact elegant width */
+        }
+
+        .btn-login {
+            background-color: var(--white);
+            color: var(--primary-navy);
+            border: 1.5px solid rgba(15, 23, 42, 0.15);
+        }
+        
+        .btn-login:hover {
+            border-color: var(--primary-navy);
+            color: var(--primary-navy);
+            background-color: var(--bg-light);
+        }
+
+        .btn-signup {
+            background-color: var(--royal-blue);
+            color: var(--white);
+            border: 1.5px solid var(--royal-blue);
+        }
+
+        .btn-signup:hover {
+            background-color: var(--royal-blue-hover);
+            border-color: var(--royal-blue-hover);
+            color: var(--white);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .badge-premium {
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            min-height: auto;
+        }
+        .badge-blue { background: var(--sky-blue-soft); color: var(--royal-blue); }
+        .badge-green { background: var(--success-green-soft); color: #047857; }
+        .badge-gold { background: rgba(245, 158, 11, 0.1); color: var(--warning-gold); }
+
+        /* =========================================
+           ANIMATIONS (Reduced Motion Support)
+           ========================================= */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .scale-in.active { opacity: 1; transform: scale(1); }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-up, .scale-in { transition: none; opacity: 1; transform: none; }
+            .floating-panel { animation: none !important; transform: none !important; }
+        }
+
+        /* =========================================
+           LAYOUT & COMPONENTS
+           ========================================= */
+
+        /* Navbar */
+        .navbar-premium {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+            padding: 12px 0;
+            transition: var(--transition-smooth);
+        }
+        .navbar-premium.scrolled {
+            padding: 8px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+        }
+        .brand-logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(1.25rem, 4vw, 1.5rem);
+            font-weight: 800;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Mobile Menu */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: var(--white);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1.5rem;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+                border-top: 1px solid rgba(0,0,0,0.05);
+                z-index: 1000;
+                border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            }
+            .nav-item { border-bottom: 1px solid rgba(0,0,0,0.03); }
+            .nav-item:last-child { border-bottom: none; }
+            .nav-link { justify-content: space-between; display: flex; width: 100%; }
+            
+            .nav-auth-buttons {
+                display: flex;
+                flex-direction: row; /* Keep on same row */
+                gap: 12px;
+                margin-top: 1.5rem;
+                width: 100%;
+                justify-content: center;
+            }
+            .nav-auth-buttons .btn-auth {
+                max-width: 50%; /* Prevent stretching out of bounds while sharing row */
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: calc(80px + clamp(2rem, 5vw, 4rem)) 0 clamp(40px, 8vw, 80px);
+            background: radial-gradient(circle at 90% 10%, rgba(96, 165, 250, 0.08) 0%, rgba(255, 255, 255, 0) 50%),
+                        radial-gradient(circle at 10% 90%, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 0) 40%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-mesh {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+        }
+
+        /* Search Component */
+        .search-palette {
+            background: var(--white);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 8px;
+            box-shadow: var(--shadow-float);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            max-width: 900px;
+            margin-top: var(--space-md);
+        }
+        .search-field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+        .search-input-wrapper {
+            display: flex;
+            align-items: center;
+            background: var(--bg-off-white);
+            border-radius: var(--radius-md);
+            padding: 0 16px;
+            flex: 1;
+            border: 1px solid transparent;
+            transition: var(--transition-smooth);
+        }
+        .search-input-wrapper:focus-within {
+            background: var(--white);
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        .search-input-wrapper i { color: var(--royal-blue); font-size: 1.25rem; margin-right: 12px; }
+        .search-input-wrapper input, .search-input-wrapper select {
+            border: none; background: transparent; width: 100%; outline: none;
+            font-family: inherit; color: var(--text-main); font-size: 0.95rem;
+        }
+
+        @media (min-width: 992px) {
+            .search-palette {
+                flex-direction: row; border-radius: var(--radius-pill); padding: 10px; align-items: center;
+            }
+            .search-field-group { flex-direction: row; gap: 0; }
+            .search-input-wrapper {
+                background: transparent; border-radius: 0; border-right: 1px solid rgba(15, 23, 42, 0.1);
+            }
+            .search-input-wrapper:last-child { border-right: none; }
+            .search-input-wrapper:focus-within { background: transparent; box-shadow: none; }
+            .btn-search { width: auto; border-radius: var(--radius-pill); padding: 0 32px; }
+        }
+
+        /* Hero Right Visuals - Optimized for Mobile */
+        .hero-visual-board {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .floating-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-float);
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Mobile Positioning */
+        .panel-1 { top: 0%; left: 5%; right: 5%; width: 90%; animation-delay: 0s; z-index: 3; position: relative; margin-bottom: 1rem; }
+        .panel-2 { display: none; }
+        .panel-3 { display: none; }
+
+        @media (min-width: 768px) {
+            .hero-visual-board { min-height: 400px; display: block; }
+            .panel-1 { top: 10%; right: 5%; left: auto; width: 280px; position: absolute; margin-bottom: 0; }
+            .panel-2 { bottom: 15%; left: 0%; width: 260px; animation-delay: 2s; z-index: 2; display: block; }
+            .panel-3 { top: 45%; right: -5%; width: 220px; animation-delay: 4s; z-index: 1; display: block; }
+        }
+
+        .live-indicator {
+            width: 8px; height: 8px; background: var(--success-green); border-radius: 50%;
+            display: inline-block; animation: pulse-ring 2s infinite; margin-right: 8px;
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            border-top: 1px solid rgba(15, 23, 42, 0.05);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+            background: var(--bg-light);
+            padding: 30px 0;
+            overflow: hidden;
+        }
+        .trust-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(1.5rem, 4vw, 3rem);
+            flex-wrap: wrap;
+        }
+        .trust-logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #94A3B8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+        }
+        .trust-logo:hover { color: var(--primary-navy); }
+
+        /* Premium Cards Framework */
+        .premium-card {
+            background: var(--white);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+        .premium-card:hover {
+            box-shadow: var(--shadow-float);
+            transform: translateY(-4px);
+            border-color: rgba(37, 99, 235, 0.2);
+            color: inherit;
+        }
+        
+        .mobile-scroll-x {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.25rem;
+            padding-bottom: 1.5rem; 
+            margin-left: calc(-1 * var(--bs-gutter-x) / 2);
+            margin-right: calc(-1 * var(--bs-gutter-x) / 2);
+            padding-left: calc(var(--bs-gutter-x) / 2);
+            padding-right: calc(var(--bs-gutter-x) / 2);
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+        }
+        .mobile-scroll-x::-webkit-scrollbar { display: none; }
+        .mobile-scroll-x > * {
+            scroll-snap-align: start;
+            flex: 0 0 85%;
+            max-width: 340px;
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-scroll-x {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                overflow-x: visible;
+                margin: 0; padding: 0; gap: 1.5rem;
+            }
+            .mobile-scroll-x > * { flex: auto; max-width: none; }
+        }
+
+        /* Job Cards Specifics */
+        .company-logo-box {
+            width: 56px; height: 56px; min-width: 56px;
+            border-radius: var(--radius-md);
+            background: var(--bg-light);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--primary-navy);
+            border: 1px solid rgba(15, 23, 42, 0.05);
+            overflow: hidden;
+        }
+        .job-meta-flex {
+            display: flex; flex-wrap: wrap; gap: 12px 16px;
+            margin: 16px 0; color: var(--text-muted); font-size: 0.875rem;
+        }
+        .job-meta-flex span { display: flex; align-items: center; gap: 6px; }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        
+        /* Category Pills - Compact and Elegant */
+        .category-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            padding-bottom: 10px;
+            -ms-overflow-style: none; scrollbar-width: none;
+        }
+        .category-scroll::-webkit-scrollbar { display: none; }
+        
+        .category-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 0 16px; 
+            min-height: 42px; 
+            background: var(--white);
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            border-radius: var(--radius-pill);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.9rem; 
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            white-space: nowrap;
+        }
+        .category-pill:hover, .category-pill.active {
+            background: var(--primary-navy); color: var(--white); border-color: var(--primary-navy);
+        }
+
+        /* Courses Section Images */
+        .course-thumb {
+            width: 100%;
+            height: 180px;
+            border-radius: var(--radius-md);
+            background: var(--bg-light);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Story Cards (Profile focused) */
+        .story-card {
+            background: var(--bg-off-white);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            border: 1px solid rgba(0,0,0,0.03);
+            height: 100%;
+            display: flex; flex-direction: column;
+        }
+        .quote-icon { font-size: 2rem; color: var(--sky-blue); margin-bottom: 1rem; opacity: 0.5; }
+        .profile-img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--white); box-shadow: var(--shadow-subtle); }
+
+        /* Dark Employer CTA */
+        .recruiter-cta {
+            background: var(--primary-navy-dark);
+            color: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl) clamp(1.5rem, 4vw, 3rem);
+            position: relative;
+            overflow: hidden;
+        }
+        .recruiter-cta::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, transparent 50%);
+            z-index: 0; pointer-events: none;
+        }
+        .stat-number { font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 800; font-family: 'Plus Jakarta Sans', sans-serif; color: var(--white); line-height: 1;}
+        .stat-label { 
+            color: rgba(255, 255, 255, 0.85); 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+            margin-top: 8px;
+            font-weight: 500; 
+        }
+
+        /* Mega Footer */
+        .footer-premium {
+            background: var(--primary-navy-dark);
+            color: var(--text-light);
+            padding: var(--space-xl) 0 var(--space-md);
+        }
+        .footer-title { color: var(--white); font-size: 1.1rem; margin-bottom: 1.5rem; font-weight: 600;}
+        .footer-link { display: block; color: var(--text-light); margin-bottom: 0.75rem; transition: 0.2s; padding: 4px 0;}
+        .footer-link:hover { color: var(--sky-blue); transform: translateX(4px); }
+        .social-btn {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(255,255,255,0.05); display: inline-flex; align-items: center; justify-content: center;
+            color: var(--white); transition: 0.3s; margin-right: 8px;
+        }
+        .social-btn:hover { background: var(--royal-blue); }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-premium fixed-top" id="navbar">
+        <div class="container">
+            <a class="brand-logo" href="#">
+                <i class="ph-fill ph-chart-line-up text-gradient-blue"></i>
+                FinCareer
+            </a>
+            
+            <button class="navbar-toggler border-0 shadow-none p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-label="Toggle navigation">
+                <i class="ph ph-list fs-1 text-primary-navy"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto gap-lg-3 fw-medium">
+                    <li class="nav-item"><a class="nav-link" href="#jobs">Jobs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#courses">Certifications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#employers">For Employers</a></li>
+                </ul>
+                <div class="nav-auth-buttons">
+                    <a href="#" class="btn-auth btn-login">Login</a>
+                    <a href="#" class="btn-auth btn-signup">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-mesh"></div>
+        <div class="container relative z-1">
+            <div class="row align-items-center">
+                <!-- Left: Copy & Search -->
+                <div class="col-lg-7 text-center text-lg-start mb-5 mb-lg-0 reveal-up">
+                    <div class="badge-premium badge-blue mb-4">
+                        <i class="ph-fill ph-sparkle"></i> Premium Finance Careers
+                    </div>
+                    <h1 class="display-hero mb-4">
+                        Where Finance Careers <br class="d-none d-lg-block"> <span class="text-gradient-blue">Move Forward.</span>
+                    </h1>
+                    <p class="subtitle-section mx-auto mx-lg-0 mb-4 mb-lg-5">
+                        Discover verified opportunities for CAs, CMAs, Auditors, and Banking Professionals from leading financial institutions and the Big 4.
+                    </p>
+                    
+                    <!-- Smart Fluid Search -->
+                    <div class="search-palette">
+                        <div class="search-field-group">
+                            <div class="search-input-wrapper">
+                                <i class="ph ph-magnifying-glass"></i>
+                                <input type="text" placeholder="Role (e.g. CA, Tax)">
+                            </div>
+                            <div class="search-input-wrapper d-none d-sm-flex">
+                                <i class="ph ph-map-pin"></i>
+                                <input type="text" placeholder="Location">
+                            </div>
+                            <div class="search-input-wrapper">
+                                <i class="ph ph-briefcase"></i>
+                                <select aria-label="Experience">
+                                    <option value="" disabled selected>Experience</option>
+                                    <option value="0">Fresher</option>
+                                    <option value="1">1-3 Years</option>
+                                    <option value="3">3-5 Years</option>
+                                    <option value="5">5+ Years</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-premium btn-search">Search</button>
+                    </div>
+                    
+                    <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 mt-4 text-muted text-fluid-sm fw-medium">
+                        <span><i class="ph-fill ph-check-circle text-success-green me-1"></i> Verified Employers</span>
+                        <span class="d-none d-sm-inline"><i class="ph-fill ph-check-circle text-success-green me-1"></i> AI Skill Matching</span>
+                        <span><i class="ph-fill ph-check-circle text-success-green me-1"></i> Real-time Tracking</span>
+                    </div>
+                </div>
+
+                <!-- Right: CSS Financial UI Dashboard -->
+                <div class="col-lg-5 reveal-up delay-2">
+                    <div class="hero-visual-board">
+                        <!-- Panel 1: Live Hiring (Always visible) -->
+                        <div class="floating-panel panel-1">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <span class="text-fluid-sm fw-bold"><span class="live-indicator"></span>Live Hiring</span>
+                                <i class="ph-bold ph-dots-three"></i>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="company-logo-box rounded-circle">
+                                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=100&q=80" alt="Company" class="img-cover">
+                                </div>
+                                <div>
+                                    <div class="fw-bold text-fluid-sm">Senior Auditor</div>
+                                    <div class="text-muted" style="font-size:0.8rem;">Hired 2 mins ago at KPMG</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 2: Skill Match (Tablet/Desktop) -->
+                        <div class="floating-panel panel-2">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="company-logo-box bg-navy text-white rounded-circle"><i class="ph-fill ph-buildings"></i></div>
+                                <div>
+                                    <div class="fw-bold text-fluid-sm">Deloitte</div>
+                                    <div class="text-muted" style="font-size:0.8rem;">Tax Consultant</div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between text-fluid-sm fw-bold mb-2">
+                                <span>Profile Match</span>
+                                <span class="text-success-green">98%</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 98%" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 3: Salary Graph Concept (Tablet/Desktop) -->
+                        <div class="floating-panel panel-3">
+                            <div class="text-muted fw-semibold mb-2" style="font-size:0.75rem;">AVG SALARY (CA)</div>
+                            <div class="fw-bold fs-4 mb-3">₹14.5L</div>
+                            <div class="d-flex align-items-end gap-1" style="height: 40px;">
+                                <div class="bg-light-gray rounded" style="width: 20%; height: 40%;"></div>
+                                <div class="bg-light-gray rounded" style="width: 20%; height: 60%;"></div>
+                                <div class="bg-light-gray rounded" style="width: 20%; height: 50%;"></div>
+                                <div class="bg-light-gray rounded" style="width: 20%; height: 80%;"></div>
+                                <div class="bg-royal-blue rounded" style="width: 20%; height: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar reveal-up">
+        <div class="container text-center">
+            <p class="text-fluid-sm text-muted fw-bold mb-4 text-uppercase tracking-wider">Trusted by Industry Leaders</p>
+            <div class="trust-logos">
+                <div class="trust-logo"><i class="ph-fill ph-bank"></i> GlobalBank</div>
+                <div class="trust-logo"><i class="ph-fill ph-buildings"></i> AuditCorp</div>
+                <div class="trust-logo"><i class="ph-fill ph-chart-pie-slice"></i> TaxAdvisors</div>
+                <div class="trust-logo"><i class="ph-fill ph-money"></i> CapitalPartners</div>
+                <div class="trust-logo d-none d-md-flex"><i class="ph-fill ph-shield-check"></i> CompliancePro</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPLORE NICHES & FRESH JOBS -->
+    <section class="section-padding bg-light-gray" id="jobs">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center text-center reveal-up">
+                <h2 class="title-section">Explore Finance Niches</h2>
+                <p class="subtitle-section mb-4">Curated roles spanning across every major financial sector.</p>
+            </div>
+            
+            <div class="category-scroll mt-3 mb-5 reveal-up delay-1">
+                <button class="category-pill active"><i class="ph-bold ph-briefcase"></i> All Roles</button>
+                <button class="category-pill"><i class="ph-bold ph-calculator"></i> CA / CMA</button>
+                <button class="category-pill"><i class="ph-bold ph-magnifying-glass-chart"></i> Audit & Tax</button>
+                <button class="category-pill"><i class="ph-bold ph-bank"></i> Banking</button>
+                <button class="category-pill"><i class="ph-bold ph-trend-up"></i> Financial Analyst</button>
+                <button class="category-pill"><i class="ph-bold ph-globe"></i> Remote</button>
+            </div>
+
+            <!-- JOBS GRID (Responsive: 1 Mobile, 2 Tablet, 3 Desktop) -->
+            <div class="mt-4 pt-2">
+                <div class="d-flex justify-content-between align-items-end mb-4 reveal-up">
+                    <h3 class="h4 mb-0 fw-bold">Recommended Matches</h3>
+                    <a href="#" class="text-royal-blue fw-semibold d-none d-md-flex align-items-center gap-1 text-decoration-none">View All <i class="ph-bold ph-arrow-right"></i></a>
+                </div>
+
+                <div class="row g-4 align-items-stretch reveal-up delay-2">
+                    <!-- Card 1 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <a href="#" class="premium-card d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="company-logo-box">
+                                    <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=100&q=80" alt="Logo" class="img-cover">
+                                </div>
+                                <span class="badge-premium badge-green"><i class="ph-fill ph-lightning"></i> 98% Match</span>
+                            </div>
+                            <h4 class="h5 mb-1 fw-bold">Senior Tax Consultant</h4>
+                            <div class="fw-semibold text-primary-navy mb-3">Deloitte India</div>
+                            
+                            <div class="job-meta-flex">
+                                <span><i class="ph-bold ph-map-pin"></i> Mumbai / Hybrid</span>
+                                <span><i class="ph-bold ph-briefcase"></i> 3-5 Yrs</span>
+                                <span><i class="ph-bold ph-currency-inr"></i> ₹12L - ₹18L</span>
+                            </div>
+                            
+                            <div class="badge-list mt-auto pt-3 border-top">
+                                <span class="badge-premium badge-blue">Corporate Tax</span>
+                                <span class="badge-premium badge-blue">CA Qualified</span>
+                            </div>
+                            
+                            <!-- Mobile Apply CTA hidden on desktop, visible on hover desktop -->
+                            <div class="mt-3">
+                                <button class="btn btn-premium w-100 py-2">Quick Apply</button>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <a href="#" class="premium-card d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="company-logo-box bg-navy text-white">
+                                    <i class="ph-bold ph-bank"></i>
+                                </div>
+                                <span class="badge-premium badge-gold"><i class="ph-fill ph-fire"></i> Hot Role</span>
+                            </div>
+                            <h4 class="h5 mb-1 fw-bold">FP&A Manager</h4>
+                            <div class="fw-semibold text-primary-navy mb-3">HDFC Bank Limited</div>
+                            
+                            <div class="job-meta-flex">
+                                <span><i class="ph-bold ph-map-pin"></i> Bangalore</span>
+                                <span><i class="ph-bold ph-briefcase"></i> 5-8 Yrs</span>
+                                <span><i class="ph-bold ph-currency-inr"></i> ₹20L - ₹28L</span>
+                            </div>
+                            
+                            <div class="badge-list mt-auto pt-3 border-top">
+                                <span class="badge-premium badge-blue">Fin Modeling</span>
+                                <span class="badge-premium badge-blue">MBA / CA</span>
+                            </div>
+                            <div class="mt-3">
+                                <button class="btn btn-outline-premium w-100 py-2">View Details</button>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <a href="#" class="premium-card d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="company-logo-box">
+                                    <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&q=80" alt="Logo" class="img-cover">
+                                </div>
+                                <span class="badge-premium badge-blue">Actively Hiring</span>
+                            </div>
+                            <h4 class="h5 mb-1 fw-bold">Statutory Audit Exec</h4>
+                            <div class="fw-semibold text-primary-navy mb-3">KPMG India</div>
+                            
+                            <div class="job-meta-flex">
+                                <span><i class="ph-bold ph-map-pin"></i> Gurugram</span>
+                                <span><i class="ph-bold ph-briefcase"></i> 1-3 Yrs</span>
+                                <span><i class="ph-bold ph-currency-inr"></i> Undisclosed</span>
+                            </div>
+                            
+                            <div class="badge-list mt-auto pt-3 border-top">
+                                <span class="badge-premium badge-blue">Ind AS</span>
+                                <span class="badge-premium badge-blue">CMA / CA</span>
+                            </div>
+                            <div class="mt-3">
+                                <button class="btn btn-outline-premium w-100 py-2">View Details</button>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn btn-outline-premium w-100 mt-4 d-md-none justify-content-center">View All Jobs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPSKILLING & CERTIFICATIONS -->
+    <section class="section-padding bg-navy text-white" id="courses">
+        <div class="container">
+            <div class="row align-items-center mb-5 reveal-up">
+                <div class="col-lg-8">
+                    <div class="badge-premium badge-dark mb-3">100% Placement Assistance</div>
+                    <h2 class="title-section text-white">Upskill & Get Certified</h2>
+                    <p class="text-light text-fluid-lg mb-0">Industry-recognized programs to bridge the gap between academia and corporate reality.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0 d-none d-lg-block">
+                    <a href="#" class="btn btn-outline-white">Explore Programs</a>
+                </div>
+            </div>
+
+            <div class="mobile-scroll-x reveal-up delay-1">
+                <!-- Course 1 -->
+                <a href="#" class="premium-card bg-navy-dark border-secondary text-start p-3">
+                    <div class="course-thumb">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Finance Course" class="img-cover opacity-75">
+                    </div>
+                    <div class="px-2 pb-2 d-flex flex-column h-100">
+                        <h3 class="h5 text-white mb-2 fw-bold">Advanced GST Certification</h3>
+                        <p class="text-light text-fluid-sm mb-4">Master GST filing, returns, and corporate compliance with practical case studies.</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center border-top border-secondary pt-3">
+                            <span class="fw-bold text-sky-blue">4 Weeks</span>
+                            <span class="text-white fw-semibold d-flex align-items-center gap-1">Details <i class="ph-bold ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Course 2 -->
+                <a href="#" class="premium-card bg-navy-dark border-secondary text-start p-3">
+                    <div class="course-thumb">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Modeling Course" class="img-cover opacity-75">
+                    </div>
+                    <div class="px-2 pb-2 d-flex flex-column h-100">
+                        <h3 class="h5 text-white mb-2 fw-bold">Financial Modeling Pro</h3>
+                        <p class="text-light text-fluid-sm mb-4">Build robust financial models from scratch for PE and investment banking roles.</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center border-top border-secondary pt-3">
+                            <span class="fw-bold text-sky-blue">8 Weeks</span>
+                            <span class="text-white fw-semibold d-flex align-items-center gap-1">Details <i class="ph-bold ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Course 3 -->
+                <a href="#" class="premium-card bg-navy-dark border-secondary text-start p-3">
+                    <div class="course-thumb">
+                        <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&q=80" alt="Corporate Course" class="img-cover opacity-75">
+                    </div>
+                    <div class="px-2 pb-2 d-flex flex-column h-100">
+                        <h3 class="h5 text-white mb-2 fw-bold">Corporate Finance Bootcamp</h3>
+                        <p class="text-light text-fluid-sm mb-4">Complete intensive covering advanced accounting, taxation, and corporate law.</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center border-top border-secondary pt-3">
+                            <span class="fw-bold text-sky-blue">12 Weeks</span>
+                            <span class="text-white fw-semibold d-flex align-items-center gap-1">Details <i class="ph-bold ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <a href="#" class="btn btn-outline-white w-100 mt-4 d-lg-none justify-content-center">Explore All Programs</a>
+        </div>
+    </section>
+
+    <!-- SUCCESS STORIES (Swipeable on Mobile, Grid on Desktop) -->
+    <section class="section-padding bg-bg-off-white">
+        <div class="container text-center">
+            <h2 class="title-section reveal-up">Career Growth Stories</h2>
+            <p class="subtitle-section mx-auto mb-4 mb-lg-5 reveal-up delay-1">Join thousands of professionals who elevated their finance careers.</p>
+            
+            <div class="mobile-scroll-x text-start reveal-up delay-2 pt-2">
+                <!-- Story 1 -->
+                <div class="story-card">
+                    <i class="ph-fill ph-quotes quote-icon"></i>
+                    <p class="mb-4 text-fluid-sm fst-italic">"The platform's specific focus on finance roles helped me find a direct opening at a Big 4 firm. The interview prep resources were absolutely game-changing."</p>
+                    <div class="mt-auto d-flex align-items-center gap-3 border-top pt-3">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="User" class="profile-img">
+                        <div>
+                            <div class="fw-bold">Aman Verma</div>
+                            <div class="text-muted" style="font-size:0.8rem;">Senior Auditor @ KPMG</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story 2 -->
+                <div class="story-card">
+                    <i class="ph-fill ph-quotes quote-icon"></i>
+                    <p class="mb-4 text-fluid-sm fst-italic">"After completing my CMA, I struggled to find relevant roles. FinCareer's AI matching connected me with top manufacturing companies instantly."</p>
+                    <div class="mt-auto d-flex align-items-center gap-3 border-top pt-3">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80" alt="User" class="profile-img">
+                        <div>
+                            <div class="fw-bold">Priya Desai</div>
+                            <div class="text-muted" style="font-size:0.8rem;">Cost Controller @ Tata</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story 3 -->
+                <div class="story-card">
+                    <i class="ph-fill ph-quotes quote-icon"></i>
+                    <p class="mb-4 text-fluid-sm fst-italic">"The AI resume builder reformatted my outdated CV into a sleek document. Within a week, I had three interview calls from leading banks."</p>
+                    <div class="mt-auto d-flex align-items-center gap-3 border-top pt-3">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&q=80" alt="User" class="profile-img">
+                        <div>
+                            <div class="fw-bold">Vikram Singh</div>
+                            <div class="text-muted" style="font-size:0.8rem;">Wealth Manager @ HDFC</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EMPLOYER CTA (Dark, Metrics) -->
+    <section class="section-padding bg-white" id="employers">
+        <div class="container reveal-up">
+            <div class="recruiter-cta shadow-lg">
+                <div class="row align-items-center z-1 position-relative">
+                    <div class="col-lg-7 text-center text-lg-start mb-5 mb-lg-0">
+                        <div class="badge-premium badge-blue mb-3 text-white border border-secondary bg-transparent">For Employers</div>
+                        <h2 class="display-hero text-white mb-3 fw-bold">Hire Exceptional<br>Finance Talent.</h2>
+                        <p class="text-light text-fluid-lg mb-5 max-w-lg mx-auto mx-lg-0">Access a curated pool of verified CAs, CMAs, Auditors, and Analysts. Cut your hiring time by 50% with our smart algorithms.</p>
+                        <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3">
+                            <button class="btn btn-premium bg-white text-primary-navy fw-bold">Post a Job Free</button>
+                            <button class="btn btn-outline-premium text-white border-white">Talk to Sales</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-5 text-center text-lg-start">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-6 col-md-4 col-lg-12">
+                                <div class="stat-number counter" data-target="2000000">0</div>
+                                <div class="stat-label">Verified Candidates</div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-12">
+                                <div class="stat-number counter" data-target="10000">0</div>
+                                <div class="stat-label">Active Employers</div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-12">
+                                <div class="stat-number">24h</div>
+                                <div class="stat-label">Avg. Shortlist Time</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEGA FOOTER -->
+    <footer class="footer-premium">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4 pe-lg-5 text-center text-lg-start">
+                    <a class="brand-logo text-white justify-content-center justify-content-lg-start mb-4 text-decoration-none" href="#">
+                        <i class="ph-fill ph-chart-line-up text-sky-blue"></i>
+                        FinCareer
+                    </a>
+                    <p class="text-fluid-sm text-light mb-4">The premier career ecosystem connecting top finance, accounting, and compliance talent with world-class organizations.</p>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="#" class="social-btn" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo fs-5"></i></a>
+                        <a href="#" class="social-btn" aria-label="Twitter"><i class="ph-fill ph-twitter-logo fs-5"></i></a>
+                        <a href="#" class="social-btn" aria-label="Instagram"><i class="ph-fill ph-instagram-logo fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h5 class="footer-title">Candidates</h5>
+                    <a href="#" class="footer-link text-decoration-none">Browse Jobs</a>
+                    <a href="#" class="footer-link text-decoration-none">Resume Builder</a>
+                    <a href="#" class="footer-link text-decoration-none">Salary Trends</a>
+                    <a href="#" class="footer-link text-decoration-none">Certifications</a>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h5 class="footer-title">Employers</h5>
+                    <a href="#" class="footer-link text-decoration-none">Post a Job</a>
+                    <a href="#" class="footer-link text-decoration-none">Search Resumes</a>
+                    <a href="#" class="footer-link text-decoration-none">Pricing</a>
+                    <a href="#" class="footer-link text-decoration-none">Employer Brand</a>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h5 class="footer-title">Roles</h5>
+                    <a href="#" class="footer-link text-decoration-none">CA Jobs</a>
+                    <a href="#" class="footer-link text-decoration-none">Audit & Tax</a>
+                    <a href="#" class="footer-link text-decoration-none">Banking</a>
+                    <a href="#" class="footer-link text-decoration-none">FP&A Roles</a>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h5 class="footer-title">Company</h5>
+                    <a href="#" class="footer-link text-decoration-none">About Us</a>
+                    <a href="#" class="footer-link text-decoration-none">Contact</a>
+                    <a href="#" class="footer-link text-decoration-none">Privacy Policy</a>
+                    <a href="#" class="footer-link text-decoration-none">Terms</a>
+                </div>
+            </div>
+            <div class="border-top border-secondary pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center text-light text-fluid-sm text-center text-md-start">
+                <p class="mb-0">&copy; 2026 FinCareer. All rights reserved.</p>
+                <div class="mt-2 mt-md-0 fw-semibold">Built for the future of finance hiring.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Interactions & Animations Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Sticky Navbar styling on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // 2. Scroll Reveal Animation using Intersection Observer
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            if (!prefersReducedMotion) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -50px 0px',
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.reveal-up, .scale-in').forEach(el => {
+                    observer.observe(el);
+                });
+            } else {
+                document.querySelectorAll('.reveal-up, .scale-in').forEach(el => {
+                    el.classList.add('active');
+                });
+            }
+
+            // 3. Counter Animation Logic
+            const counters = document.querySelectorAll('.counter');
+            const speed = 250;
+
+            const animateCounters = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        const counter = entry.target;
+                        const updateCount = () => {
+                            const target = +counter.getAttribute('data-target');
+                            const count = +counter.innerText.replace(/,/g, '');
+                            const inc = target / speed;
+
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count + inc).toLocaleString();
+                                setTimeout(updateCount, 15);
+                            } else {
+                                if(target >= 1000000) {
+                                    counter.innerText = (target / 1000000) + 'M+';
+                                } else if (target >= 1000) {
+                                    counter.innerText = (target / 1000) + 'K+';
+                                } else {
+                                    counter.innerText = target;
+                                }
+                            }
+                        };
+                        updateCount();
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if (!prefersReducedMotion) {
+                counters.forEach(counter => animateCounters.observe(counter));
+            } else {
+                 counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    if(target >= 1000000) counter.innerText = (target / 1000000) + 'M+';
+                    else if (target >= 1000) counter.innerText = (target / 1000) + 'K+';
+                    else counter.innerText = target;
+                 });
+            }
+            
+            // 4. Mobile Menu toggle fixes to prevent body scroll
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            
+            navbarToggler.addEventListener('click', () => {
+                if(!navbarCollapse.classList.contains('show')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Close mobile menu on link click
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(navbarCollapse.classList.contains('show')) {
+                        navbarToggler.click();
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // 5. Category Pill Toggle Logic (Visual only)
+            const pills = document.querySelectorAll('.category-pill');
+            pills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    pills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
