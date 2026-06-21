@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -202,7 +202,7 @@
             margin: 0 12px;
             transition: color 0.3s ease;
         }
-        .nav-link:hover {
+        .nav-link:hover, .nav-link.active {
             color: var(--accent) !important;
         }
         
@@ -218,7 +218,7 @@
         .navbar-scrolled .nav-link {
             color: rgba(255, 255, 255, 0.8) !important;
         }
-        .navbar-scrolled .nav-link:hover {
+        .navbar-scrolled .nav-link:hover, .navbar-scrolled .nav-link.active {
             color: var(--accent-light) !important;
         }
         .navbar-scrolled .btn-outline-custom {
@@ -849,28 +849,28 @@
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-premium fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <div class="brand-dot"></div>
-                Finance Port
-            </a>
-            <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border:1px solid var(--border-light);">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Platform</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Opportunities</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Employers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Intelligence</a></li>
-                </ul>
-                <div class="d-flex flex-column flex-lg-row gap-3 mt-3 mt-lg-0">
-                    <button class="btn btn-outline-custom w-100 w-lg-auto">Sign In</button>
-                    <button class="btn btn-premium w-100 w-lg-auto">Post a Role</button>
-                </div>
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <div class="brand-dot"></div>
+            Finance Port
+        </a>
+        <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border:1px solid var(--border-light);">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="job-listings.html">Opportunities</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <div class="d-flex flex-column flex-lg-row gap-3 mt-3 mt-lg-0">
+                <button class="btn btn-outline-custom w-100 w-lg-auto">Sign In</button>
+                <button class="btn btn-premium w-100 w-lg-auto">Post a Role</button>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- SECTION 1: HERO -->
     <section class="hero-section text-center">
@@ -1252,11 +1252,12 @@
     </section>
 
     <!-- SECTION 10: LUXURY FOOTER -->
+        <!-- SECTION 10: LUXURY FOOTER -->
     <footer class="section-py" style="padding-bottom: 40px !important;">
         <div class="container">
             <div class="row g-5 mb-5">
                 <div class="col-lg-4 text-center text-lg-start">
-                    <a class="navbar-brand mb-4 d-inline-flex justify-content-center justify-content-lg-start text-white" href="#" style="color: white !important;">
+                    <a class="navbar-brand mb-4 d-inline-flex justify-content-center justify-content-lg-start text-white" href="index.html" style="color: white !important;">
                         <div class="brand-dot"></div>
                         Finance Port
                     </a>
@@ -1265,31 +1266,16 @@
                     </p>
                 </div>
                 <div class="col-lg-2 col-6">
-                    <h5 class="footer-heading">Platform</h5>
-                    <a href="#" class="footer-link">For Candidates</a>
-                    <a href="#" class="footer-link">For Employers</a>
-                    <a href="#" class="footer-link">Pricing</a>
-                    <a href="#" class="footer-link">Enterprise</a>
-                </div>
-                <div class="col-lg-2 col-6">
-                    <h5 class="footer-heading">Resources</h5>
-                    <a href="#" class="footer-link">Salary Data</a>
-                    <a href="#" class="footer-link">Career Paths</a>
-                    <a href="#" class="footer-link">Interview Guides</a>
-                    <a href="#" class="footer-link">Certifications</a>
-                </div>
-                <div class="col-lg-2 col-6">
                     <h5 class="footer-heading">Company</h5>
-                    <a href="#" class="footer-link">About Us</a>
-                    <a href="#" class="footer-link">Careers</a>
-                    <a href="#" class="footer-link">Blog</a>
-                    <a href="#" class="footer-link">Contact</a>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="job-listings.html" class="footer-link">Opportunities</a>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="contact.html" class="footer-link">Contact</a>
                 </div>
                 <div class="col-lg-2 col-6">
                     <h5 class="footer-heading">Legal</h5>
-                    <a href="#" class="footer-link">Privacy Policy</a>
-                    <a href="#" class="footer-link">Terms of Service</a>
-                    <a href="#" class="footer-link">Security Center</a>
+                    <a href="privacy.html" class="footer-link">Privacy Policy</a>
+                    <a href="terms.html" class="footer-link">Terms of Service</a>
                 </div>
             </div>
             <div class="pt-4 border-top" style="border-color: rgba(255,255,255,0.1) !important;">

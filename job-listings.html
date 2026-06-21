@@ -1,0 +1,1081 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunities | Finance Port</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        /* =========================================
+        DESIGN SYSTEM & VARIABLES
+        ========================================= */
+        :root {
+            --primary: #0D2B4E;         /* Deep Navy */
+            --secondary: #1E63FF;       /* Royal Blue */
+            --accent: #E8A020;          /* Gold */
+            --accent-light: #F5C05C;    /* Light Gold */
+            --bg-base: #FFFFFF;         /* White */
+            --bg-light: #F8FAFC;        /* Light Gray/Blue background */
+            
+            --text-main: #1E293B;       /* Slate 800 - Main Text */
+            --text-muted: #64748B;      /* Slate 500 - Secondary Text */
+            
+            --border-light: #E2E8F0;    /* Soft borders */
+            --border-accent: rgba(232, 160, 32, 0.3);
+            
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 8px;
+            
+            --shadow-sm: 0 4px 6px -1px rgba(13, 43, 78, 0.05);
+            --shadow-md: 0 10px 30px -5px rgba(13, 43, 78, 0.08);
+            --shadow-lg: 0 20px 40px -10px rgba(13, 43, 78, 0.12);
+            --shadow-glow: 0 0 20px rgba(232, 160, 32, 0.3);
+            
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Strict Overflow Control */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+        
+        h1, .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem) !important; }
+        h2 { font-size: clamp(1.75rem, 4vw, 2.75rem) !important; }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-primary-custom { color: var(--primary) !important; }
+        .text-accent { color: var(--accent) !important; }
+
+        /* Responsive Fluid Spacing System */
+        .section-py { padding-top: clamp(40px, 8vw, 100px); padding-bottom: clamp(40px, 8vw, 100px); }
+        .section-mt { margin-top: clamp(30px, 5vw, 80px); }
+        .section-mb { margin-bottom: clamp(30px, 5vw, 80px); }
+        .bg-alternate { background-color: var(--bg-light); }
+
+        /* Utilities */
+        .premium-card {
+            background: var(--bg-base);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .premium-card:hover {
+            border-color: rgba(13, 43, 78, 0.2);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Buttons */
+        .btn-premium {
+            background: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .btn-premium:hover { background: #091f3a; border-color: #091f3a; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(13, 43, 78, 0.2); color: white; }
+
+        .btn-accent-glow {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-glow);
+            white-space: nowrap;
+        }
+        .btn-accent-glow:hover { background: #d18f1a; transform: translateY(-2px); box-shadow: 0 0 25px rgba(232, 160, 32, 0.5); color: white; }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .btn-outline-custom:hover { background: var(--bg-light); border-color: var(--primary); color: var(--primary); }
+
+        /* =========================================
+        NAVBAR
+        ========================================= */
+        .navbar-premium {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .navbar-brand { font-weight: 800; font-size: clamp(1.2rem, 3vw, 1.5rem); color: var(--primary) !important; display: flex; align-items: center; gap: 8px; }
+        .brand-dot { width: clamp(10px, 2vw, 14px); height: clamp(10px, 2vw, 14px); background: var(--accent); border-radius: 50%; }
+        .nav-link { color: var(--text-muted) !important; font-weight: 600; font-size: 0.95rem; margin: 0 12px; transition: color 0.3s ease; }
+        .nav-link:hover, .nav-link.active { color: var(--accent) !important; }
+        
+        .navbar-scrolled { background: rgba(13, 43, 78, 0.98) !important; box-shadow: 0 10px 30px rgba(13, 43, 78, 0.2) !important; border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important; }
+        .navbar-scrolled .navbar-brand { color: #FFFFFF !important; }
+        .navbar-scrolled .nav-link { color: rgba(255, 255, 255, 0.8) !important; }
+        .navbar-scrolled .nav-link:hover, .navbar-scrolled .nav-link.active { color: var(--accent-light) !important; }
+        .navbar-scrolled .btn-outline-custom { color: #FFFFFF !important; border-color: rgba(255, 255, 255, 0.4) !important; }
+        .navbar-scrolled .btn-outline-custom:hover { background: rgba(255, 255, 255, 0.1) !important; border-color: #FFFFFF !important; color: #FFFFFF !important; }
+        .navbar-scrolled .navbar-toggler { border-color: rgba(255, 255, 255, 0.3) !important; }
+        .navbar-scrolled .navbar-toggler-icon { filter: brightness(0) invert(1); }
+        
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: var(--bg-base); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 20px; box-shadow: var(--shadow-lg);
+                position: absolute; top: 100%; left: 15px; right: 15px; margin-top: 10px; max-height: calc(100vh - 80px); overflow-y: auto; z-index: 1050;
+            }
+            .navbar-nav { margin-bottom: 20px; }
+            .nav-link { margin: 8px 0; font-size: 1.1rem; }
+            .navbar-scrolled .navbar-collapse { background: var(--primary); border-color: rgba(255, 255, 255, 0.1); }
+        }
+
+        /* =========================================
+        HERO & SEARCH
+        ========================================= */
+        .hero-section {
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: clamp(140px, 18vh, 180px);
+            padding-bottom: clamp(60px, 10vh, 80px);
+            overflow: hidden;
+            color: white;
+        }
+        
+        .hero-pattern {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px; opacity: 0.5; pointer-events: none;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto clamp(30px, 6vw, 40px) auto;
+            line-height: 1.7; font-weight: 300;
+        }
+
+        /* Hero Job Search Box */
+        .hero-search-box {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-base);
+            border-radius: var(--radius-lg);
+            padding: clamp(8px, 1vw, 12px);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (min-width: 992px) {
+            .hero-search-box { flex-direction: row; align-items: center; }
+        }
+
+        .search-field {
+            display: flex; align-items: center; flex: 1;
+            padding: clamp(12px, 2vw, 16px);
+        }
+        
+        .search-field i { color: var(--text-muted); font-size: 1.1rem; width: 24px; }
+        
+        .search-field input {
+            border: none; background: transparent; width: 100%;
+            color: var(--text-main); font-weight: 500; font-size: 1rem;
+            outline: none; padding-left: 8px;
+        }
+        
+        .search-field input::placeholder { color: var(--text-muted); font-weight: 400; }
+
+        .search-divider { width: 1px; height: 40px; background: var(--border-light); margin: 0 8px; display: none; }
+        .search-divider-mobile { height: 1px; width: 100%; background: var(--border-light); margin: 0; display: block; }
+        
+        @media (min-width: 992px) {
+            .search-divider { display: block; }
+            .search-divider-mobile { display: none; }
+        }
+
+        .search-btn {
+            width: 100%;
+        }
+        @media (min-width: 992px) {
+            .search-btn {
+                width: auto;
+                flex-shrink: 0;
+            }
+        }
+
+        /* Quick Filters / Sticky Bar */
+        .quick-filters-container {
+            background: var(--bg-base);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 0;
+            position: sticky;
+            top: 70px; /* Accounts for navbar */
+            z-index: 900;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .quick-filters-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 4px;
+            scrollbar-width: none; /* Firefox */
+        }
+        .quick-filters-scroll::-webkit-scrollbar { display: none; }
+
+        .filter-pill {
+            padding: 8px 16px;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 30px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-pill:hover, .filter-pill.active {
+            background: rgba(13, 43, 78, 0.05);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* =========================================
+        JOB LISTINGS & SIDEBAR
+        ========================================= */
+        .filter-sidebar {
+            background: var(--bg-base);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            padding: 24px;
+            position: sticky;
+            top: 150px;
+        }
+
+        .filter-group { margin-bottom: 24px; }
+        .filter-group-title { font-weight: 700; font-size: 1rem; color: var(--primary); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .form-check-label { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; cursor: pointer; }
+        .form-check-input:checked { background-color: var(--secondary); border-color: var(--secondary); }
+        .filter-count { font-size: 0.8rem; color: var(--text-muted); background: var(--bg-light); padding: 2px 8px; border-radius: 12px; }
+
+        /* Job Cards */
+        .job-card {
+            padding: clamp(20px, 4vw, 28px);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            background: var(--bg-base);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .job-card:hover {
+            border-color: rgba(13, 43, 78, 0.2);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .job-logo {
+            width: clamp(50px, 8vw, 64px);
+            height: clamp(50px, 8vw, 64px);
+            border-radius: 14px;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .job-match-badge {
+            background: rgba(30, 99, 255, 0.1);
+            color: var(--secondary);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .job-tag {
+            background: var(--bg-light);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+        }
+
+        .btn-save-job {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            color: var(--text-muted);
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .btn-save-job:hover { color: var(--accent); border-color: var(--accent); background: rgba(232, 160, 32, 0.1); }
+
+        /* =========================================
+        OTHER SECTIONS (Matched components)
+        ========================================= */
+        .section-tag {
+            display: inline-block; padding: 6px 16px;
+            background: rgba(232, 160, 32, 0.1); color: var(--accent);
+            border-radius: 20px; font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            margin-bottom: 16px; border: 1px solid var(--border-accent);
+        }
+
+        .emp-logo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        @media (min-width: 768px) { .emp-logo-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .emp-logo-item {
+            background: var(--bg-base); border: 1px solid var(--border-light); border-radius: 16px;
+            padding: 24px; text-align: center; font-weight: 800; font-size: 1.2rem;
+            color: var(--primary); font-family: serif; box-shadow: var(--shadow-sm); transition: var(--transition);
+        }
+        .emp-logo-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--primary); }
+
+        .cta-section {
+            background: radial-gradient(circle at center, var(--bg-light) 0%, var(--bg-base) 100%);
+            text-align: center; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);
+            position: relative; overflow: hidden;
+        }
+        
+        .job-alert-section {
+            background-color: var(--primary); color: white; border-radius: var(--radius-lg); position: relative; overflow: hidden;
+        }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .text-balance { text-wrap: balance; }
+        
+        /* Footer */
+        footer { background: var(--primary); color: white; }
+        .footer-heading { color: var(--accent-light); font-weight: 600; margin-bottom: 24px; font-size: clamp(1rem, 2vw, 1.1rem); }
+        .footer-link { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 12px; transition: var(--transition); font-size: clamp(0.9rem, 2vw, 1rem); }
+        .footer-link:hover { color: white; padding-left: 4px; }
+        .footer-social { transition: var(--transition); }
+        .footer-social:hover { color: var(--accent) !important; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-premium fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <div class="brand-dot"></div>
+            Finance Port
+        </a>
+        <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border:1px solid var(--border-light);">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="job-listings.html">Opportunities</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <div class="d-flex flex-column flex-lg-row gap-3 mt-3 mt-lg-0">
+                <button class="btn btn-outline-custom w-100 w-lg-auto">Sign In</button>
+                <button class="btn btn-premium w-100 w-lg-auto">Post a Role</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- SECTION 1: HERO SEARCH -->
+    <section class="hero-section text-center">
+        <div class="hero-pattern"></div>
+        <div class="container relative z-10">
+            <h1 class="hero-title text-balance">
+                Discover Your Next Finance <br class="d-none d-md-block">
+                <span class="text-gradient">Career Opportunity.</span>
+            </h1>
+            <p class="hero-subtitle text-balance">
+                Explore premium opportunities from top finance, taxation, audit, banking and consulting employers actively hiring today.
+            </p>
+
+            <!-- Advanced Search Box -->
+            <div class="hero-search-box mt-5">
+                <div class="search-field">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Job Title or Keyword (e.g., CA, Tax)">
+                </div>
+                <div class="search-divider-mobile"></div>
+                <div class="search-divider"></div>
+                
+                <div class="search-field">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <input type="text" placeholder="Skills (e.g., Auditing, GST)">
+                </div>
+                <div class="search-divider-mobile"></div>
+                <div class="search-divider"></div>
+
+                <div class="search-field">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" placeholder="City or Remote">
+                </div>
+                
+                <button class="btn btn-accent-glow py-3 px-5 mt-3 mt-lg-0 ms-lg-2 fs-6 search-btn" style="border-radius: 12px;">Find Jobs</button>
+            </div>
+
+            <!-- Stats -->
+            <div class="d-flex flex-wrap justify-content-center gap-4 gap-md-5 mt-5">
+                <div>
+                    <h4 class="text-white mb-0"><span class="counter" data-target="45">0</span>,000+</h4>
+                    <span class="text-white-50 small fw-medium">Active Jobs</span>
+                </div>
+                <div>
+                    <h4 class="text-white mb-0"><span class="counter" data-target="250">0</span>+</h4>
+                    <span class="text-white-50 small fw-medium">Hiring Companies</span>
+                </div>
+                <div>
+                    <h4 class="text-white mb-0"><span class="counter" data-target="150">0</span>,000+</h4>
+                    <span class="text-white-50 small fw-medium">Candidates</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: QUICK FILTERS (Sticky) -->
+    <div class="quick-filters-container">
+        <div class="container">
+            <div class="quick-filters-scroll">
+                <div class="filter-pill active">All Jobs</div>
+                <div class="filter-pill">CA Jobs</div>
+                <div class="filter-pill">CMA Jobs</div>
+                <div class="filter-pill">Audit Jobs</div>
+                <div class="filter-pill">Taxation Jobs</div>
+                <div class="filter-pill">Banking Jobs</div>
+                <div class="filter-pill">Finance Manager</div>
+                <div class="filter-pill">Remote Jobs</div>
+                <div class="filter-pill">Fresher Jobs</div>
+                <div class="filter-pill">Government Finance</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: JOB LISTINGS LAYOUT -->
+    <section class="bg-alternate section-py">
+        <div class="container">
+            <div class="row g-4">
+                
+                <!-- MOBILE FILTER TOGGLE -->
+                <div class="col-12 d-lg-none">
+                    <button class="btn btn-outline-custom w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileFilterCanvas">
+                        <span><i class="fa-solid fa-sliders me-2"></i> Filters</span>
+                        <span class="badge bg-primary rounded-pill">3</span>
+                    </button>
+                </div>
+
+                <!-- LEFT SIDEBAR: Desktop Filters (and Mobile Offcanvas content) -->
+                <div class="col-lg-3">
+                    <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="mobileFilterCanvas">
+                        <div class="offcanvas-header d-lg-none border-bottom">
+                            <h5 class="offcanvas-title fw-bold text-primary">Filters</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#mobileFilterCanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body p-0 p-lg-0">
+                            <div class="filter-sidebar w-100">
+                                <div class="d-flex justify-content-between align-items-center mb-4 d-none d-lg-flex">
+                                    <h4 class="mb-0 fs-5">Filters</h4>
+                                    <a href="#" class="text-muted small text-decoration-none fw-medium">Clear All</a>
+                                </div>
+
+                                <!-- Filter: Qualifications -->
+                                <div class="filter-group">
+                                    <h6 class="filter-group-title">Qualification <i class="fa-solid fa-chevron-up text-muted small"></i></h6>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="q-ca" checked>
+                                        <label class="form-check-label d-flex justify-content-between" for="q-ca">Chartered Accountant (CA) <span class="filter-count">1.2k</span></label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="q-cma">
+                                        <label class="form-check-label d-flex justify-content-between" for="q-cma">CMA <span class="filter-count">850</span></label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="q-cpa">
+                                        <label class="form-check-label d-flex justify-content-between" for="q-cpa">CPA <span class="filter-count">420</span></label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="q-cs">
+                                        <label class="form-check-label d-flex justify-content-between" for="q-cs">Company Secretary (CS) <span class="filter-count">310</span></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="q-mba">
+                                        <label class="form-check-label d-flex justify-content-between" for="q-mba">MBA Finance <span class="filter-count">2.1k</span></label>
+                                    </div>
+                                </div>
+
+                                <!-- Filter: Job Type -->
+                                <div class="filter-group">
+                                    <h6 class="filter-group-title">Job Type <i class="fa-solid fa-chevron-up text-muted small"></i></h6>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="jt-full">
+                                        <label class="form-check-label d-flex justify-content-between" for="jt-full">Full Time <span class="filter-count">35k</span></label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="jt-contract">
+                                        <label class="form-check-label d-flex justify-content-between" for="jt-contract">Contract <span class="filter-count">5k</span></label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="jt-remote">
+                                        <label class="form-check-label d-flex justify-content-between" for="jt-remote">Remote <span class="filter-count">8k</span></label>
+                                    </div>
+                                </div>
+
+                                <!-- Filter: Experience -->
+                                <div class="filter-group">
+                                    <h6 class="filter-group-title">Experience <i class="fa-solid fa-chevron-up text-muted small"></i></h6>
+                                    <select class="form-select text-muted fs-6">
+                                        <option selected>Any Experience</option>
+                                        <option value="1">Fresher (0-1 yrs)</option>
+                                        <option value="2">Mid-Level (2-5 yrs)</option>
+                                        <option value="3">Senior (5-10 yrs)</option>
+                                        <option value="4">Executive (10+ yrs)</option>
+                                    </select>
+                                </div>
+
+                                <!-- Filter: Salary -->
+                                <div class="filter-group">
+                                    <h6 class="filter-group-title">Salary Range <i class="fa-solid fa-chevron-up text-muted small"></i></h6>
+                                    <input type="range" class="form-range" min="0" max="5" step="1" id="salaryRange">
+                                    <div class="d-flex justify-content-between text-muted small fw-medium mt-1">
+                                        <span>$50k</span>
+                                        <span>$250k+</span>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-premium w-100">Apply Filters</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT CONTENT: Job Listings -->
+                <div class="col-lg-9">
+                    
+                    <!-- Top Bar -->
+                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4">
+                        <div>
+                            <h3 class="mb-1 fs-4">Finance & Accounting Jobs</h3>
+                            <p class="text-muted mb-0 fs-6">Showing 1–10 of 45,000+ Jobs</p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mt-3 mt-sm-0">
+                            <span class="text-muted fw-medium small text-nowrap">Sort By:</span>
+                            <select class="form-select form-select-sm border-light bg-white text-primary fw-medium" style="width: auto; padding-right: 30px;">
+                                <option selected>Relevance</option>
+                                <option value="1">Latest</option>
+                                <option value="2">Highest Salary</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Job List -->
+                    <div class="d-flex flex-column gap-3">
+                        
+                        <!-- Job Card 1 -->
+                        <div class="job-card reveal">
+                            <div class="d-flex flex-column flex-md-row gap-4">
+                                <!-- Logo & Basic Info -->
+                                <div class="d-flex flex-grow-1 gap-3">
+                                    <div class="job-logo">D</div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2 mb-1">
+                                            <h4 class="mb-0 fs-5 text-primary">Senior Tax Consultant</h4>
+                                            <span class="job-match-badge ms-auto ms-sm-2 d-none d-sm-inline-block">95% Match</span>
+                                        </div>
+                                        <div class="text-muted fs-6 fw-medium mb-2">Deloitte • New York, NY (Hybrid)</div>
+                                        <div class="d-flex flex-wrap gap-3 text-muted small fw-medium mb-3">
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-solid fa-briefcase"></i> 5-8 Yrs</span>
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-solid fa-money-bill-wave"></i> $120k - $160k</span>
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-regular fa-clock"></i> 2h ago</span>
+                                        </div>
+                                        <!-- Tags -->
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="job-tag">CPA</span>
+                                            <span class="job-tag">Corporate Tax</span>
+                                            <span class="job-tag">Compliance</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Actions -->
+                                <div class="d-flex flex-row flex-md-column justify-content-between align-items-md-end border-top border-md-0 pt-3 pt-md-0 mt-3 mt-md-0" style="min-width: 140px;">
+                                    <button class="btn-save-job" title="Save Job"><i class="fa-regular fa-bookmark fs-5"></i></button>
+                                    <div class="d-flex flex-column gap-2 w-100 mt-auto">
+                                        <button class="btn btn-premium w-100 py-2 fs-6" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 2 -->
+                        <div class="job-card reveal">
+                            <div class="d-flex flex-column flex-md-row gap-4">
+                                <div class="d-flex flex-grow-1 gap-3">
+                                    <div class="job-logo">GS</div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2 mb-1">
+                                            <h4 class="mb-0 fs-5 text-primary">Financial Analyst</h4>
+                                            <span class="job-match-badge ms-auto ms-sm-2 d-none d-sm-inline-block">88% Match</span>
+                                        </div>
+                                        <div class="text-muted fs-6 fw-medium mb-2">Goldman Sachs • London, UK</div>
+                                        <div class="d-flex flex-wrap gap-3 text-muted small fw-medium mb-3">
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-solid fa-briefcase"></i> 2-4 Yrs</span>
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-solid fa-money-bill-wave"></i> £90k - £120k</span>
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-regular fa-clock"></i> 5h ago</span>
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="job-tag">Financial Modeling</span>
+                                            <span class="job-tag">M&A</span>
+                                            <span class="job-tag">MBA Finance</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row flex-md-column justify-content-between align-items-md-end border-top border-md-0 pt-3 pt-md-0 mt-3 mt-md-0" style="min-width: 140px;">
+                                    <button class="btn-save-job" title="Save Job"><i class="fa-regular fa-bookmark fs-5"></i></button>
+                                    <div class="d-flex flex-column gap-2 w-100 mt-auto">
+                                        <button class="btn btn-premium w-100 py-2 fs-6" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 3 -->
+                        <div class="job-card reveal">
+                            <div class="d-flex flex-column flex-md-row gap-4">
+                                <div class="d-flex flex-grow-1 gap-3">
+                                    <div class="job-logo">K</div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2 mb-1">
+                                            <h4 class="mb-0 fs-5 text-primary">Internal Auditor</h4>
+                                            <span class="job-match-badge ms-auto ms-sm-2 d-none d-sm-inline-block" style="background: rgba(232,160,32,0.1); color: var(--accent);">72% Match</span>
+                                        </div>
+                                        <div class="text-muted fs-6 fw-medium mb-2">KPMG • Chicago, IL (Remote)</div>
+                                        <div class="d-flex flex-wrap gap-3 text-muted small fw-medium mb-3">
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-solid fa-briefcase"></i> 4-7 Yrs</span>
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-solid fa-money-bill-wave"></i> $110k - $145k</span>
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-regular fa-clock"></i> 1d ago</span>
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="job-tag">CA</span>
+                                            <span class="job-tag">Internal Audit</span>
+                                            <span class="job-tag">Risk Assessment</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row flex-md-column justify-content-between align-items-md-end border-top border-md-0 pt-3 pt-md-0 mt-3 mt-md-0" style="min-width: 140px;">
+                                    <button class="btn-save-job" title="Save Job"><i class="fa-regular fa-bookmark fs-5"></i></button>
+                                    <div class="d-flex flex-column gap-2 w-100 mt-auto">
+                                        <button class="btn btn-premium w-100 py-2 fs-6" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Job Card 4 -->
+                        <div class="job-card reveal">
+                            <div class="d-flex flex-column flex-md-row gap-4">
+                                <div class="d-flex flex-grow-1 gap-3">
+                                    <div class="job-logo" style="font-size:1.1rem;">MS</div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2 mb-1">
+                                            <h4 class="mb-0 fs-5 text-primary">M&A Analyst</h4>
+                                            <span class="job-match-badge ms-auto ms-sm-2 d-none d-sm-inline-block">89% Match</span>
+                                        </div>
+                                        <div class="text-muted fs-6 fw-medium mb-2">Morgan Stanley • New York, NY</div>
+                                        <div class="d-flex flex-wrap gap-3 text-muted small fw-medium mb-3">
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-solid fa-briefcase"></i> 1-3 Yrs</span>
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-solid fa-money-bill-wave"></i> $140k - $185k</span>
+                                            <span class="d-flex align-items-center gap-1"><i class="fa-regular fa-clock"></i> 2d ago</span>
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="job-tag">Valuation</span>
+                                            <span class="job-tag">Due Diligence</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row flex-md-column justify-content-between align-items-md-end border-top border-md-0 pt-3 pt-md-0 mt-3 mt-md-0" style="min-width: 140px;">
+                                    <button class="btn-save-job" title="Save Job"><i class="fa-regular fa-bookmark fs-5"></i></button>
+                                    <div class="d-flex flex-column gap-2 w-100 mt-auto">
+                                        <button class="btn btn-premium w-100 py-2 fs-6" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="d-flex justify-content-center mt-5">
+                        <button class="btn btn-outline-custom">Load More Jobs</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: FEATURED EMPLOYERS -->
+    <section class="section-py reveal">
+        <div class="container">
+            <div class="text-center section-mb">
+                <div class="section-tag">Top Hiring Companies</div>
+                <h2 class="text-balance">Featured Employers</h2>
+            </div>
+            
+            <div class="emp-logo-grid">
+                <div class="emp-logo-item">Deloitte.</div>
+                <div class="emp-logo-item">EY</div>
+                <div class="emp-logo-item">KPMG</div>
+                <div class="emp-logo-item">PwC</div>
+                <div class="emp-logo-item" style="font-family: sans-serif;">HDFC BANK</div>
+                <div class="emp-logo-item" style="font-family: sans-serif;">ICICI Bank</div>
+                <div class="emp-logo-item" style="font-family: sans-serif; color:#0b66c2;">Infosys</div>
+                <div class="emp-logo-item" style="font-family: sans-serif;">TATA</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: SALARY INSIGHTS -->
+    <section class="bg-alternate section-py reveal">
+        <div class="container">
+            <div class="text-center section-mb">
+                <h2 class="text-balance">Finance Salary Insights</h2>
+                <p class="text-muted mx-auto mt-3 fs-5" style="max-width: 600px;">Average compensation data based on recent platform hires.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="premium-card p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">Chartered Accountant</h5>
+                            <i class="fa-solid fa-arrow-trend-up text-success"></i>
+                        </div>
+                        <h3 class="text-primary mb-1">$90k - $150k</h3>
+                        <p class="text-muted small mb-0">Average Base • USA</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="premium-card p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">Finance Manager</h5>
+                            <i class="fa-solid fa-arrow-trend-up text-success"></i>
+                        </div>
+                        <h3 class="text-primary mb-1">$110k - $170k</h3>
+                        <p class="text-muted small mb-0">Average Base • USA</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="premium-card p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">Financial Analyst</h5>
+                            <i class="fa-solid fa-arrow-trend-up text-success"></i>
+                        </div>
+                        <h3 class="text-primary mb-1">$75k - $115k</h3>
+                        <p class="text-muted small mb-0">Average Base • USA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: CAREER RESOURCES -->
+    <section class="section-py reveal">
+        <div class="container">
+            <div class="text-center section-mb">
+                <h2 class="text-balance">Career Resources</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4 text-center">
+                        <div class="icon-box mx-auto"><i class="fa-solid fa-file-invoice"></i></div>
+                        <h5 class="mb-2">Resume Builder</h5>
+                        <p class="text-muted fs-6 small">ATS-optimized templates.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4 text-center">
+                        <div class="icon-box mx-auto"><i class="fa-solid fa-user-tie"></i></div>
+                        <h5 class="mb-2">Interview Prep</h5>
+                        <p class="text-muted fs-6 small">Big 4 question banks.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4 text-center">
+                        <div class="icon-box mx-auto"><i class="fa-solid fa-certificate"></i></div>
+                        <h5 class="mb-2">Certifications</h5>
+                        <p class="text-muted fs-6 small">CA, CPA, CMA guidance.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4 text-center">
+                        <div class="icon-box mx-auto"><i class="fa-solid fa-route"></i></div>
+                        <h5 class="mb-2">Career Roadmaps</h5>
+                        <p class="text-muted fs-6 small">Growth trajectory planning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: JOB ALERT CTA -->
+    <section class="container pb-5 mb-5 reveal">
+        <div class="job-alert-section p-4 p-md-5">
+            <div class="hero-pattern"></div>
+            <div class="row align-items-center position-relative z-10">
+                <div class="col-lg-7 text-center text-lg-start mb-4 mb-lg-0">
+                    <h2 class="text-white mb-2">Never Miss A Finance Opportunity</h2>
+                    <p class="text-white-50 fs-5 mb-0">Get tailored jobs delivered straight to your inbox.</p>
+                </div>
+                <div class="col-lg-5">
+                    <div class="d-flex flex-column flex-sm-row gap-2">
+                        <input type="email" class="form-control form-control-lg border-0" placeholder="Enter your email address" style="border-radius: 12px;">
+                        <button class="btn btn-accent-glow px-4 py-3" style="border-radius: 12px;">Create Free Job Alert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: FINAL CTA -->
+    <section class="cta-section section-py reveal mt-5">
+        <div class="container text-center">
+            <h2 class="fs-1 mb-4 text-balance">Find The Right Opportunity Faster</h2>
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <button class="btn btn-premium px-4 py-3">Browse Jobs</button>
+                <button class="btn btn-outline-custom px-4 py-3">Create Profile</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: LUXURY FOOTER -->
+        <!-- SECTION 10: LUXURY FOOTER -->
+    <footer class="section-py" style="padding-bottom: 40px !important;">
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4 text-center text-lg-start">
+                    <a class="navbar-brand mb-4 d-inline-flex justify-content-center justify-content-lg-start text-white" href="index.html" style="color: white !important;">
+                        <div class="brand-dot"></div>
+                        Finance Port
+                    </a>
+                    <p class="pe-lg-5 text-balance text-white-50 fs-6">
+                        The premium operating system for modern finance recruitment. Designed for ambition, engineered for excellence.
+                    </p>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5 class="footer-heading">Company</h5>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="job-listings.html" class="footer-link">Opportunities</a>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="contact.html" class="footer-link">Contact</a>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5 class="footer-heading">Legal</h5>
+                    <a href="privacy.html" class="footer-link">Privacy Policy</a>
+                    <a href="terms.html" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+            <div class="pt-4 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                    <p class="text-white-50 mb-0 text-center" style="font-size: 0.9rem;">&copy; 2026 Finance Port. All rights reserved.</p>
+                    <div class="d-flex gap-4">
+                        <a href="#" class="text-white-50 text-decoration-none footer-social"><i class="fa-brands fa-linkedin fs-5"></i></a>
+                        <a href="#" class="text-white-50 text-decoration-none footer-social"><i class="fa-brands fa-twitter fs-5"></i></a>
+                        <a href="#" class="text-white-50 text-decoration-none footer-social"><i class="fa-brands fa-facebook fs-5"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- APPLY MODAL -->
+    <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: var(--radius-lg); border: none; box-shadow: var(--shadow-lg);">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-5 pt-2">
+                    <div class="icon-box mx-auto mb-4" style="background: rgba(30, 99, 255, 0.1); color: var(--secondary); border: none;">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    </div>
+                    <h3 class="mb-3">Continue Your Application</h3>
+                    <p class="text-muted mb-4">Please log in or create a free account to apply for this role and save your progress.</p>
+                    
+                    <div class="d-flex flex-column gap-3">
+                        <button class="btn btn-premium w-100 py-3">Login</button>
+                        <button class="btn btn-outline-custom w-100 py-3">Create Free Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Scroll Reveal Animation via Intersection Observer
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // 2. Animated Counters
+            const counters = document.querySelectorAll('.counter');
+            let hasCounted = false;
+
+            const counterObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !hasCounted) {
+                    hasCounted = true;
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000; 
+                        const increment = target / (duration / 16); 
+                        
+                        let current = 0;
+                        const updateCounter = () => {
+                            current += increment;
+                            if (current < target) {
+                                counter.innerText = Math.ceil(current);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCounter();
+                    });
+                }
+            }, { threshold: 0.5 });
+
+            const statsSection = document.querySelector('.hero-section');
+            if (statsSection) {
+                counterObserver.observe(statsSection);
+            }
+
+            // 3. Dynamic Navbar Background based on scroll
+            const navbar = document.querySelector('.navbar-premium');
+            const heroSection = document.querySelector('.hero-section');
+            const footer = document.querySelector('footer');
+            
+            window.addEventListener('scroll', () => {
+                const scrollThreshold = heroSection ? heroSection.offsetHeight - 80 : 50;
+                
+                // Check if navbar is touching or overlapping the footer
+                const navbarRect = navbar.getBoundingClientRect();
+                const footerRect = footer ? footer.getBoundingClientRect() : { top: Infinity };
+                const isTouchingFooter = footerRect.top <= navbarRect.bottom;
+                
+                if (window.scrollY > scrollThreshold && !isTouchingFooter) {
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                }
+            });
+
+            // Quick Filter Active State Toggle
+            const filterPills = document.querySelectorAll('.filter-pill');
+            filterPills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    filterPills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

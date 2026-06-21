@@ -1,0 +1,626 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | Finance Port</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        /* =========================================
+        DESIGN SYSTEM & VARIABLES
+        ========================================= */
+        :root {
+            --primary: #0D2B4E;         /* Deep Navy */
+            --secondary: #1E63FF;       /* Royal Blue */
+            --accent: #E8A020;          /* Gold */
+            --accent-light: #F5C05C;    /* Light Gold */
+            --bg-base: #FFFFFF;         /* White */
+            --bg-light: #F8FAFC;        /* Light Gray/Blue background */
+            
+            --text-main: #1E293B;       /* Slate 800 - Main Text */
+            --text-muted: #64748B;      /* Slate 500 - Secondary Text */
+            
+            --border-light: #E2E8F0;    /* Soft borders */
+            --border-accent: rgba(232, 160, 32, 0.3);
+            
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 8px;
+            
+            --shadow-sm: 0 4px 6px -1px rgba(13, 43, 78, 0.05);
+            --shadow-md: 0 10px 30px -5px rgba(13, 43, 78, 0.08);
+            --shadow-lg: 0 20px 40px -10px rgba(13, 43, 78, 0.12);
+            --shadow-glow: 0 0 20px rgba(232, 160, 32, 0.3);
+            
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Strict Overflow Control & Smooth Scroll */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+        
+        h1, .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem) !important; }
+        .hero-title { color: white !important; }
+        h2 { font-size: clamp(1.75rem, 4vw, 2.75rem) !important; }
+        h3 { font-size: clamp(1.3rem, 3vw, 1.75rem); margin-bottom: 1rem; }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Responsive Fluid Spacing System */
+        .section-py { padding-top: clamp(40px, 8vw, 100px); padding-bottom: clamp(40px, 8vw, 100px); }
+        .bg-alternate { background-color: var(--bg-light); }
+
+        /* Utilities */
+        .premium-card {
+            background: var(--bg-base);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .premium-card:hover {
+            border-color: rgba(13, 43, 78, 0.2);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Buttons */
+        .btn-premium {
+            background: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .btn-premium:hover { background: #091f3a; border-color: #091f3a; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(13, 43, 78, 0.2); color: white; }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .btn-outline-custom:hover { background: var(--bg-light); border-color: var(--primary); color: var(--primary); }
+
+        /* =========================================
+        NAVBAR
+        ========================================= */
+        .navbar-premium {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .navbar-brand { font-weight: 800; font-size: clamp(1.2rem, 3vw, 1.5rem); color: var(--primary) !important; display: flex; align-items: center; gap: 8px; }
+        .brand-dot { width: clamp(10px, 2vw, 14px); height: clamp(10px, 2vw, 14px); background: var(--accent); border-radius: 50%; }
+        .nav-link { color: var(--text-muted) !important; font-weight: 600; font-size: 0.95rem; margin: 0 12px; transition: color 0.3s ease; }
+        .nav-link:hover, .nav-link.active { color: var(--accent) !important; }
+        
+        .navbar-scrolled { background: rgba(13, 43, 78, 0.98) !important; box-shadow: 0 10px 30px rgba(13, 43, 78, 0.2) !important; border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important; }
+        .navbar-scrolled .navbar-brand { color: #FFFFFF !important; }
+        .navbar-scrolled .nav-link { color: rgba(255, 255, 255, 0.8) !important; }
+        .navbar-scrolled .nav-link:hover, .navbar-scrolled .nav-link.active { color: var(--accent-light) !important; }
+        .navbar-scrolled .btn-outline-custom { color: #FFFFFF !important; border-color: rgba(255, 255, 255, 0.4) !important; }
+        .navbar-scrolled .btn-outline-custom:hover { background: rgba(255, 255, 255, 0.1) !important; border-color: #FFFFFF !important; color: #FFFFFF !important; }
+        .navbar-scrolled .navbar-toggler { border-color: rgba(255, 255, 255, 0.3) !important; }
+        .navbar-scrolled .navbar-toggler-icon { filter: brightness(0) invert(1); }
+        
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: var(--bg-base); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 20px; box-shadow: var(--shadow-lg);
+                position: absolute; top: 100%; left: 15px; right: 15px; margin-top: 10px; max-height: calc(100vh - 80px); overflow-y: auto; z-index: 1050;
+            }
+            .navbar-nav { margin-bottom: 20px; }
+            .nav-link { margin: 8px 0; font-size: 1.1rem; }
+            .navbar-scrolled .navbar-collapse { background: var(--primary); border-color: rgba(255, 255, 255, 0.1); }
+        }
+
+        /* =========================================
+        HERO SECTION
+        ========================================= */
+        .hero-section {
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: clamp(140px, 18vh, 180px);
+            padding-bottom: clamp(60px, 8vh, 80px);
+            overflow: hidden;
+            color: white;
+        }
+        
+        .hero-pattern {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px; opacity: 0.5; pointer-events: none;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.05rem, 2vw, 1.15rem);
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7; font-weight: 300;
+        }
+
+        /* =========================================
+        TERMS CONTENT & TOC
+        ========================================= */
+        .toc-wrapper {
+            position: sticky;
+            top: 120px;
+            padding: 24px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+        }
+        
+        /* Custom scrollbar for TOC */
+        .toc-wrapper::-webkit-scrollbar {
+            width: 4px;
+        }
+        .toc-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .toc-wrapper::-webkit-scrollbar-thumb {
+            background: var(--border-light);
+            border-radius: 4px;
+        }
+
+        .toc-link {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.90rem;
+            padding: 8px 12px;
+            border-left: 2px solid var(--border-light);
+            transition: var(--transition);
+            margin-bottom: 4px;
+        }
+
+        .toc-link:hover, .toc-link.active {
+            color: var(--secondary);
+            border-left-color: var(--secondary);
+            background: rgba(30, 99, 255, 0.05);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .policy-section {
+            padding: 32px;
+            margin-bottom: 24px;
+            scroll-margin-top: 100px; /* Adjust for fixed header offset */
+        }
+
+        .policy-section p, .policy-section li {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        .policy-section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-section li::marker {
+            color: var(--secondary);
+        }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .text-balance { text-wrap: balance; }
+        
+        /* Footer */
+        footer { background: var(--primary); color: white; }
+        .footer-heading { color: var(--accent-light); font-weight: 600; margin-bottom: 24px; font-size: clamp(1rem, 2vw, 1.1rem); }
+        .footer-link { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 12px; transition: var(--transition); font-size: clamp(0.9rem, 2vw, 1rem); }
+        .footer-link:hover { color: white; padding-left: 4px; }
+        .footer-social { transition: var(--transition); }
+        .footer-social:hover { color: var(--accent) !important; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-premium fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <div class="brand-dot"></div>
+            Finance Port
+        </a>
+        <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border:1px solid var(--border-light);">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="job-listings.html">Opportunities</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <div class="d-flex flex-column flex-lg-row gap-3 mt-3 mt-lg-0">
+                <button class="btn btn-outline-custom w-100 w-lg-auto">Sign In</button>
+                <button class="btn btn-premium w-100 w-lg-auto">Post a Role</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- SECTION 1: HERO -->
+    <section class="hero-section text-center">
+        <div class="hero-pattern"></div>
+        <div class="container relative z-10">
+            <h1 class="hero-title text-balance mb-4 text-white">
+                Terms & <span class="text-gradient">Conditions</span>
+            </h1>
+            <p class="hero-subtitle text-balance mb-4">
+                Please read these Terms & Conditions carefully before using Finance Port. By accessing or using our platform, you agree to comply with and be bound by these terms.
+            </p>
+            <div class="badge border border-light text-white-50 fw-normal px-3 py-2 rounded-pill" style="font-size: 0.85rem;">
+                Last Updated: October 15, 2026
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: CONTENT & TOC -->
+    <section class="bg-alternate section-py">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- STICKY TABLE OF CONTENTS (Desktop Only) -->
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="premium-card toc-wrapper">
+                        <h4 class="fs-5 mb-4 text-primary">Table of Contents</h4>
+                        <nav id="toc-nav">
+                            <a href="#acceptance" class="toc-link active">1. Acceptance of Terms</a>
+                            <a href="#eligibility" class="toc-link">2. Eligibility Requirements</a>
+                            <a href="#user-accounts" class="toc-link">3. User Accounts</a>
+                            <a href="#job-posting" class="toc-link">4. Job Posting Policy</a>
+                            <a href="#applications" class="toc-link">5. Candidate Applications</a>
+                            <a href="#subscription" class="toc-link">6. Subscription & Payment</a>
+                            <a href="#prohibited" class="toc-link">7. Prohibited Activities</a>
+                            <a href="#intellectual-property" class="toc-link">8. Intellectual Property Rights</a>
+                            <a href="#privacy" class="toc-link">9. Privacy & Data Usage</a>
+                            <a href="#third-party" class="toc-link">10. Third-Party Services</a>
+                            <a href="#liability" class="toc-link">11. Limitation of Liability</a>
+                            <a href="#termination" class="toc-link">12. Account Suspension</a>
+                            <a href="#indemnification" class="toc-link">13. Indemnification</a>
+                            <a href="#governing-law" class="toc-link">14. Governing Law</a>
+                            <a href="#changes" class="toc-link">15. Changes to Terms</a>
+                            <a href="#contact" class="toc-link">16. Contact Information</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- TERMS AND CONDITIONS CONTENT -->
+                <div class="col-lg-8">
+                    
+                    <div id="acceptance" class="premium-card policy-section reveal">
+                        <h3>1. Acceptance of Terms</h3>
+                        <p>Welcome to Finance Port. By accessing, browsing, or using our website, platform, and related services, you acknowledge that you have read, understood, and unequivocally agree to be bound by these Terms & Conditions. If you do not agree with any part of these terms, you must immediately discontinue your use of our services.</p>
+                    </div>
+
+                    <div id="eligibility" class="premium-card policy-section reveal">
+                        <h3>2. Eligibility Requirements</h3>
+                        <p>To use the Finance Port platform, you must meet the following criteria:</p>
+                        <ul>
+                            <li><strong>Age Requirement:</strong> You must be at least 18 years of age or older to create an account and use our services.</li>
+                            <li><strong>Accuracy of Information:</strong> All information you submit to the platform must be truthful, accurate, and up-to-date.</li>
+                            <li><strong>Legal Compliance:</strong> You must comply with all applicable local, state, national, and international laws while using the platform.</li>
+                        </ul>
+                    </div>
+
+                    <div id="user-accounts" class="premium-card policy-section reveal">
+                        <h3>3. User Accounts</h3>
+                        <p>Finance Port caters to both individuals seeking employment and organizations seeking to hire. Responsibilities vary based on your account type:</p>
+                        
+                        <h5 class="mt-4 text-primary fs-6 fw-bold">For Job Seekers:</h5>
+                        <ul>
+                            <li><strong>Profile Responsibility:</strong> You are solely responsible for the information, data, and content you post on your profile.</li>
+                            <li><strong>Resume Accuracy:</strong> You guarantee that the qualifications, certifications, and experience listed on your resume are genuine and verifiable.</li>
+                            <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your login credentials and for all activities that occur under your account.</li>
+                        </ul>
+
+                        <h5 class="mt-4 text-primary fs-6 fw-bold">For Employers:</h5>
+                        <ul>
+                            <li><strong>Company Information Accuracy:</strong> You must provide accurate corporate information, including valid contact details and verifiable registration data.</li>
+                            <li><strong>Job Posting Responsibility:</strong> You are strictly accountable for the content of your job listings, ensuring they represent active, genuine roles within your organization.</li>
+                            <li><strong>Recruitment Compliance:</strong> You agree to adhere to all equal opportunity and fair hiring regulations applicable in your jurisdiction.</li>
+                        </ul>
+                    </div>
+
+                    <div id="job-posting" class="premium-card policy-section reveal">
+                        <h3>4. Job Posting Policy</h3>
+                        <p>To maintain the high quality of our platform, all employers utilizing our services agree to the following rules regarding job postings:</p>
+                        <ul>
+                            <li><strong>Genuine Opportunities Only:</strong> Listings must represent actual, currently available positions. "Ghost" postings for data collection are strictly prohibited.</li>
+                            <li><strong>No Misleading Information:</strong> Job titles, compensation ranges, and responsibilities must be transparent and clearly outlined without deceptive language.</li>
+                            <li><strong>No Fraudulent Activities:</strong> Postings that require candidates to pay an upfront fee, invest money, or undergo unpaid extensive "trial" work are banned.</li>
+                            <li><strong>Compliance with Employment Laws:</strong> All job postings must adhere to labor laws regarding minimum wage, working conditions, and anti-discrimination.</li>
+                        </ul>
+                    </div>
+
+                    <div id="applications" class="premium-card policy-section reveal">
+                        <h3>5. Candidate Applications</h3>
+                        <p>Job Seekers interacting with employers via Finance Port must adhere to professional standards:</p>
+                        <ul>
+                            <li><strong>Accurate Information:</strong> Applications submitted must honestly reflect the candidate's skills and history.</li>
+                            <li><strong>Professional Conduct:</strong> Candidates must maintain professional decorum when communicating with employers and attending interviews.</li>
+                            <li><strong>No False Claims:</strong> Exaggerating credentials or claiming unearned certifications (such as claiming a CPA without passing the exam) is grounds for immediate account termination.</li>
+                            <li><strong>No Impersonation:</strong> Applying on behalf of someone else or creating a profile under a false identity is strictly prohibited.</li>
+                        </ul>
+                    </div>
+
+                    <div id="subscription" class="premium-card policy-section reveal">
+                        <h3>6. Subscription & Payment Terms</h3>
+                        <p>Certain features on Finance Port, particularly for employers, require a paid subscription.</p>
+                        <ul>
+                            <li><strong>Employer Subscription Plans:</strong> Access to enterprise features, resume databases, and premium job slots requires purchasing a subscription plan.</li>
+                            <li><strong>Payment Obligations:</strong> You agree to pay all fees associated with your chosen plan in a timely manner.</li>
+                            <li><strong>Renewal Terms:</strong> Unless canceled prior to the end of the billing cycle, subscriptions will automatically renew.</li>
+                            <li><strong>Cancellation Policy:</strong> Subscriptions can be canceled at any time; however, fees already processed are non-refundable except where required by law.</li>
+                        </ul>
+                    </div>
+
+                    <div id="prohibited" class="premium-card policy-section reveal">
+                        <h3>7. Prohibited Activities</h3>
+                        <p>To protect our community, the following activities are strictly prohibited on the Finance Port platform:</p>
+                        <ul>
+                            <li><strong>Fake Profiles:</strong> Creating bot accounts or fabricated identities.</li>
+                            <li><strong>Spam Activities:</strong> Sending unsolicited mass messages, promotions, or irrelevant communications to users.</li>
+                            <li><strong>Unauthorized Access:</strong> Attempting to hack, exploit, or bypass platform security measures.</li>
+                            <li><strong>Data Scraping:</strong> Using automated scripts, bots, or crawlers to extract data, profiles, or job listings from the platform.</li>
+                            <li><strong>Malware Distribution:</strong> Uploading files or resumes that contain viruses, trojans, or malicious code.</li>
+                            <li><strong>Misuse of Platform Data:</strong> Utilizing contact information obtained through the platform for any reason other than legitimate recruitment activities.</li>
+                        </ul>
+                    </div>
+
+                    <div id="intellectual-property" class="premium-card policy-section reveal">
+                        <h3>8. Intellectual Property Rights</h3>
+                        <p>The content and infrastructure of the platform are protected under intellectual property laws:</p>
+                        <ul>
+                            <li><strong>Platform Ownership:</strong> Finance Port retains all rights, title, and interest in the platform's underlying software, algorithms, and design.</li>
+                            <li><strong>Content Protection:</strong> You may not copy, modify, or distribute any part of the platform without our express written consent.</li>
+                            <li><strong>Trademark Rights:</strong> The Finance Port name, logo, and branding are our exclusive trademarks.</li>
+                            <li><strong>Copyright Protection:</strong> All original content provided by Finance Port is copyrighted. However, users retain ownership of the data (e.g., resumes) they upload.</li>
+                        </ul>
+                    </div>
+
+                    <div id="privacy" class="premium-card policy-section reveal">
+                        <h3>9. Privacy & Data Usage</h3>
+                        <p>Your use of the platform is also governed by our <a href="privacy.html" class="text-primary fw-bold">Privacy Policy</a>. By using the platform, you provide user consent for the collection and processing of your data as outlined in our data handling practices. We strongly advise reading the Privacy Policy to understand how your information is safeguarded.</p>
+                    </div>
+
+                    <div id="third-party" class="premium-card policy-section reveal">
+                        <h3>10. Third-Party Services</h3>
+                        <p>Finance Port may feature external links or integrate with third-party tools:</p>
+                        <ul>
+                            <li><strong>External Links:</strong> We may provide links to employer websites or external resources. We do not control these sites.</li>
+                            <li><strong>Third-Party Integrations:</strong> We use third-party gateways for payments and analytics.</li>
+                            <li><strong>Disclaimer of Responsibility:</strong> Finance Port is not liable for the content, privacy policies, or practices of any third-party websites or services.</li>
+                        </ul>
+                    </div>
+
+                    <div id="liability" class="premium-card policy-section reveal">
+                        <h3>11. Limitation of Liability</h3>
+                        <p>While we strive to provide an exceptional service, we offer our platform on an "as is" basis:</p>
+                        <ul>
+                            <li><strong>No Employment Guarantee:</strong> Finance Port does not guarantee that job seekers will secure employment or interviews.</li>
+                            <li><strong>No Hiring Guarantee:</strong> We do not guarantee that employers will successfully fill their open positions using our platform.</li>
+                            <li><strong>Service Availability Disclaimer:</strong> We are not liable for any damages resulting from platform downtime, technical glitches, or data loss.</li>
+                        </ul>
+                    </div>
+
+                    <div id="termination" class="premium-card policy-section reveal">
+                        <h3>12. Account Suspension & Termination</h3>
+                        <p>Finance Port reserves the right to suspend or permanently terminate your account without prior notice under the following conditions:</p>
+                        <ul>
+                            <li><strong>Policy Violations:</strong> Repeatedly failing to adhere to these Terms & Conditions.</li>
+                            <li><strong>Fraudulent Activity:</strong> Engaging in scams, deceptive hiring practices, or identity theft.</li>
+                            <li><strong>Platform Misuse:</strong> Using the platform for illegal activities, harassment, or data scraping.</li>
+                        </ul>
+                    </div>
+
+                    <div id="indemnification" class="premium-card policy-section reveal">
+                        <h3>13. Indemnification</h3>
+                        <p>Users agree to indemnify, defend, and hold harmless Finance Port, its affiliates, directors, and employees against any claims, liabilities, damages, or expenses arising from your misuse of the platform, your violation of these Terms & Conditions, or your infringement of any third-party rights.</p>
+                    </div>
+
+                    <div id="governing-law" class="premium-card policy-section reveal">
+                        <h3>14. Governing Law</h3>
+                        <p>These Terms & Conditions shall be governed by and construed in accordance with the laws of the State of Delaware, United States, without regard to its conflict of law provisions. Any legal disputes arising from the use of the platform shall be subject to the exclusive jurisdiction of the courts located in Delaware.</p>
+                    </div>
+
+                    <div id="changes" class="premium-card policy-section reveal">
+                        <h3>15. Changes to Terms</h3>
+                        <p>Finance Port may update these terms from time to time to reflect operational changes or legal requirements. When we make material changes, we will notify users by revising the "Last Updated" date at the top of this page. Your continued use of the platform following the posting of changes constitutes your acceptance of such changes.</p>
+                    </div>
+
+                    <div id="contact" class="premium-card policy-section reveal">
+                        <h3>16. Contact Information</h3>
+                        <p>If you have any legal questions or require support regarding these Terms & Conditions, please contact us:</p>
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2"><i class="fa-solid fa-scale-balanced text-secondary me-2"></i> <strong>Legal Team:</strong> <a href="mailto:legal@financeport.com" class="text-primary fw-medium text-decoration-none">legal@financeport.com</a></li>
+                            <li><i class="fa-solid fa-headset text-secondary me-2"></i> <strong>Support:</strong> <a href="mailto:support@financeport.com" class="text-primary fw-medium text-decoration-none">support@financeport.com</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LUXURY FOOTER -->
+        <!-- SECTION 10: LUXURY FOOTER -->
+    <footer class="section-py" style="padding-bottom: 40px !important;">
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4 text-center text-lg-start">
+                    <a class="navbar-brand mb-4 d-inline-flex justify-content-center justify-content-lg-start text-white" href="index.html" style="color: white !important;">
+                        <div class="brand-dot"></div>
+                        Finance Port
+                    </a>
+                    <p class="pe-lg-5 text-balance text-white-50 fs-6">
+                        The premium operating system for modern finance recruitment. Designed for ambition, engineered for excellence.
+                    </p>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5 class="footer-heading">Company</h5>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="job-listings.html" class="footer-link">Opportunities</a>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="contact.html" class="footer-link">Contact</a>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5 class="footer-heading">Legal</h5>
+                    <a href="privacy.html" class="footer-link">Privacy Policy</a>
+                    <a href="terms.html" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+            <div class="pt-4 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                    <p class="text-white-50 mb-0 text-center" style="font-size: 0.9rem;">&copy; 2026 Finance Port. All rights reserved.</p>
+                    <div class="d-flex gap-4">
+                        <a href="#" class="text-white-50 text-decoration-none footer-social"><i class="fa-brands fa-linkedin fs-5"></i></a>
+                        <a href="#" class="text-white-50 text-decoration-none footer-social"><i class="fa-brands fa-twitter fs-5"></i></a>
+                        <a href="#" class="text-white-50 text-decoration-none footer-social"><i class="fa-brands fa-facebook fs-5"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Scroll Reveal Animation via Intersection Observer
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // 2. Dynamic Navbar Background based on scroll
+            const navbar = document.querySelector('.navbar-premium');
+            const heroSection = document.querySelector('.hero-section');
+            const footer = document.querySelector('footer');
+            
+            window.addEventListener('scroll', () => {
+                const scrollThreshold = heroSection ? heroSection.offsetHeight - 80 : 50;
+                
+                // Check if navbar is touching or overlapping the footer
+                const navbarRect = navbar.getBoundingClientRect();
+                const footerRect = footer ? footer.getBoundingClientRect() : { top: Infinity };
+                const isTouchingFooter = footerRect.top <= navbarRect.bottom;
+                
+                if (window.scrollY > scrollThreshold && !isTouchingFooter) {
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                }
+            });
+
+            // 3. Table of Contents Scroll Spy
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const policySections = document.querySelectorAll('.policy-section');
+            
+            // Highlight TOC links on scroll
+            window.addEventListener('scroll', () => {
+                let current = '';
+                // Add a small offset (150px) to make sure active state changes appropriately 
+                const scrollPosition = window.scrollY + 150; 
+                
+                policySections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                // If scrolled to the very bottom, set the last item as active
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+                    current = policySections[policySections.length - 1].getAttribute('id');
+                }
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
