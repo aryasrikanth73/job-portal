@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Finance Port</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        /* =========================================
+        DESIGN SYSTEM & VARIABLES
+        ========================================= */
+        :root {
+            --primary: #0D2B4E;         /* Deep Navy */
+            --secondary: #1E63FF;       /* Royal Blue */
+            --accent: #E8A020;          /* Gold */
+            --accent-light: #F5C05C;    /* Light Gold */
+            --bg-base: #FFFFFF;         /* White */
+            --bg-light: #F8FAFC;        /* Light Gray/Blue background */
+            
+            --text-main: #1E293B;       /* Slate 800 - Main Text */
+            --text-muted: #64748B;      /* Slate 500 - Secondary Text */
+            
+            --border-light: #E2E8F0;    /* Soft borders */
+            --border-accent: rgba(232, 160, 32, 0.3);
+            
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 8px;
+            
+            --shadow-sm: 0 4px 6px -1px rgba(13, 43, 78, 0.05);
+            --shadow-md: 0 10px 30px -5px rgba(13, 43, 78, 0.08);
+            --shadow-lg: 0 20px 40px -10px rgba(13, 43, 78, 0.12);
+            --shadow-glow: 0 0 20px rgba(232, 160, 32, 0.3);
+            
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Strict Overflow Control */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+        
+        h1, .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem) !important;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.75rem) !important;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-primary-custom { color: var(--primary) !important; }
+        .text-accent { color: var(--accent) !important; }
+
+        /* Responsive Fluid Spacing System */
+        .section-py { padding-top: clamp(40px, 8vw, 100px); padding-bottom: clamp(40px, 8vw, 100px); }
+        .section-mt { margin-top: clamp(30px, 5vw, 80px); }
+        .section-mb { margin-bottom: clamp(30px, 5vw, 80px); }
+        .bg-alternate { background-color: var(--bg-light); }
+
+        /* Utilities */
+        .premium-card {
+            background: var(--bg-base);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .premium-card:hover {
+            border-color: rgba(13, 43, 78, 0.2);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Buttons */
+        .btn-premium {
+            background: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .btn-premium:hover {
+            background: #091f3a; 
+            border-color: #091f3a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(13, 43, 78, 0.2);
+            color: white;
+        }
+
+        .btn-accent-glow {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-glow);
+            white-space: nowrap;
+        }
+
+        .btn-accent-glow:hover {
+            background: #d18f1a;
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(232, 160, 32, 0.5);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--bg-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-hero-outline {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius-md);
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-hero-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* =========================================
+        NAVBAR
+        ========================================= */
+        .navbar-premium {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .navbar-brand {
+            font-weight: 800;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--primary) !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+        .brand-dot {
+            width: clamp(10px, 2vw, 14px);
+            height: clamp(10px, 2vw, 14px);
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0 12px;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent) !important;
+        }
+        
+        /* SCROLLED NAVBAR STATE */
+        .navbar-scrolled {
+            background: rgba(13, 43, 78, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(13, 43, 78, 0.2) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        .navbar-scrolled .navbar-brand { color: #FFFFFF !important; }
+        .navbar-scrolled .nav-link { color: rgba(255, 255, 255, 0.8) !important; }
+        .navbar-scrolled .nav-link:hover, .navbar-scrolled .nav-link.active { color: var(--accent-light) !important; }
+        .navbar-scrolled .btn-outline-custom {
+            color: #FFFFFF !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
+        }
+        .navbar-scrolled .btn-outline-custom:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-color: #FFFFFF !important;
+            color: #FFFFFF !important;
+        }
+        .navbar-scrolled .navbar-toggler { border-color: rgba(255, 255, 255, 0.3) !important; }
+        .navbar-scrolled .navbar-toggler-icon { filter: brightness(0) invert(1); }
+        
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: var(--bg-base);
+                border: 1px solid var(--border-light);
+                border-radius: var(--radius-md);
+                padding: 20px;
+                box-shadow: var(--shadow-lg);
+                position: absolute;
+                top: 100%;
+                left: 15px;
+                right: 15px;
+                margin-top: 10px;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+                z-index: 1050;
+            }
+            .navbar-nav { margin-bottom: 20px; }
+            .nav-link { margin: 8px 0; font-size: 1.1rem; }
+            .navbar-scrolled .navbar-collapse {
+                background: var(--primary);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* =========================================
+        SECTION: HERO
+        ========================================= */
+        .hero-section {
+            background-color: var(--primary);
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: clamp(140px, 18vh, 180px);
+            padding-bottom: clamp(80px, 12vh, 120px);
+            overflow: hidden;
+            color: white;
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .hero-title {
+            color: white;
+            line-height: 1.1;
+            margin-bottom: clamp(16px, 4vw, 24px);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto clamp(30px, 6vw, 40px) auto;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Floating Stat Cards for Hero */
+        .float-card {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            z-index: 2;
+            max-width: 260px;
+            background: var(--bg-base);
+            color: var(--text-main);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            padding: 16px;
+            border: 1px solid var(--border-light);
+        }
+        
+        .fc-1 { top: 30%; left: 3%; animation-delay: 0s; }
+        .fc-2 { top: 60%; right: 3%; animation-delay: 2s; }
+        
+        @media (max-width: 1400px) {
+            .float-card { display: none !important; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* =========================================
+        CUSTOM COMPONENTS & FORMS
+        ========================================= */
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(232, 160, 32, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-accent);
+        }
+
+        .icon-box {
+            width: clamp(50px, 8vw, 64px);
+            height: clamp(50px, 8vw, 64px);
+            border-radius: 16px;
+            background: var(--bg-light);
+            color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 24px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        
+        .premium-card:hover .icon-box {
+            background: var(--primary);
+            color: var(--bg-base);
+            transform: scale(1.05);
+        }
+
+        .list-icon-check {
+            color: var(--secondary);
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        /* Form Styling */
+        .form-label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .form-control, .form-select {
+            padding: 14px 20px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            background-color: var(--bg-light);
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: var(--bg-base);
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(30, 99, 255, 0.1);
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        /* Accordion Styling */
+        .accordion-item {
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md) !important;
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .accordion-item:hover {
+            box-shadow: var(--shadow-md);
+            border-color: rgba(13, 43, 78, 0.2);
+        }
+
+        .accordion-button {
+            font-weight: 600;
+            color: var(--primary);
+            padding: 20px;
+            font-size: 1.05rem;
+            background-color: var(--bg-base);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: var(--bg-light);
+            color: var(--secondary);
+            box-shadow: none;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+
+        .accordion-body {
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding: 0 20px 20px 20px;
+            background-color: var(--bg-base);
+        }
+
+        /* Map Placeholder */
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #E2E8F0 100%);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-muted);
+        }
+
+        .cta-section {
+            background: radial-gradient(circle at center, var(--bg-light) 0%, var(--bg-base) 100%);
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .text-balance { text-wrap: balance; }
+        
+        /* Footer */
+        footer { background: var(--primary); color: white; }
+        .footer-heading { color: var(--accent-light); font-weight: 600; margin-bottom: 24px; font-size: clamp(1rem, 2vw, 1.1rem); }
+        .footer-link { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 12px; transition: var(--transition); font-size: clamp(0.9rem, 2vw, 1rem); }
+        .footer-link:hover { color: white; padding-left: 4px; }
+        .footer-social { transition: var(--transition); }
+        .footer-social:hover { color: var(--accent) !important; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-premium fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <div class="brand-dot"></div>
+                Finance Port
+            </a>
+            <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border:1px solid var(--border-light);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Platform</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Opportunities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Employers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#" style="color: var(--primary) !important;">Contact</a></li>
+                </ul>
+                <div class="d-flex flex-column flex-lg-row gap-3 mt-3 mt-lg-0">
+                    <button class="btn btn-outline-custom w-100 w-lg-auto">Sign In</button>
+                    <button class="btn btn-premium w-100 w-lg-auto">Post a Role</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: HERO -->
+    <section class="hero-section text-center">
+        <div class="hero-pattern"></div>
+        
+        <!-- Floating UI Cards (Desktop Only) -->
+        <div class="float-card fc-1 text-start d-none d-xl-block">
+            <div class="d-flex align-items-center gap-3">
+                <div class="pulse-dot"></div>
+                <div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">24/7 Support</div>
+                    <div style="font-weight: 700; color: var(--primary);">+91 8000 000 000</div>
+                </div>
+            </div>
+        </div>
+        <div class="float-card fc-2 text-start d-none d-xl-block">
+            <div class="d-flex align-items-center gap-3">
+                <div class="pulse-dot" style="background: var(--secondary); box-shadow: 0 0 10px var(--secondary);"></div>
+                <div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Fast Response</div>
+                    <div style="font-weight: 700; color: var(--primary);">info@financeport.com</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container relative z-10">
+            <div class="section-tag border-0 bg-white text-primary mb-4 shadow-sm" style="font-weight: 800;">Contact Us</div>
+            <h1 class="hero-title text-balance">
+                Get In Touch With <br class="d-none d-md-block">
+                <span class="text-gradient">Finance Port.</span>
+            </h1>
+            <p class="hero-subtitle text-balance">
+                Whether you're hiring elite finance professionals or exploring your next career opportunity, our dedicated team is ready to help you succeed.
+            </p>
+
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mt-5">
+                <button class="btn btn-accent-glow px-4 py-3">Contact Sales</button>
+                <button class="btn btn-hero-outline px-4 py-3">Talk To Recruitment Team</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: CONTACT INFORMATION -->
+    <section class="section-py reveal">
+        <div class="container">
+            <div class="text-center section-mb">
+                <h2 class="text-balance">Direct Contact Channels</h2>
+                <p class="text-muted mx-auto mt-3 fs-5" style="max-width: 600px;">Reach out to the specific department to get your queries resolved faster.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4 text-center">
+                        <div class="icon-box mx-auto"><i class="fa-solid fa-envelope-open-text"></i></div>
+                        <h4 class="mb-3">General Enquiries</h4>
+                        <p class="text-muted fs-6 mb-2">For general questions and platform support.</p>
+                        <a href="mailto:info@financeport.com" class="text-primary fw-bold text-decoration-none d-block mt-auto">info@financeport.com</a>
+                        <span class="text-primary fw-bold">+91 XXXXX XXXXX</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4 text-center">
+                        <div class="icon-box mx-auto"><i class="fa-solid fa-user-tie"></i></div>
+                        <h4 class="mb-3">Recruitment Support</h4>
+                        <p class="text-muted fs-6 mb-2">For job seekers, profile assistance, and career guidance.</p>
+                        <a href="mailto:careers@financeport.com" class="text-primary fw-bold text-decoration-none d-block mt-auto">careers@financeport.com</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4 text-center">
+                        <div class="icon-box mx-auto"><i class="fa-solid fa-building-user"></i></div>
+                        <h4 class="mb-3">Employer Support</h4>
+                        <p class="text-muted fs-6 mb-2">For hiring solutions, posting jobs, and enterprise tools.</p>
+                        <a href="mailto:employers@financeport.com" class="text-primary fw-bold text-decoration-none d-block mt-auto">employers@financeport.com</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4 text-center">
+                        <div class="icon-box mx-auto"><i class="fa-solid fa-handshake"></i></div>
+                        <h4 class="mb-3">Business Partnerships</h4>
+                        <p class="text-muted fs-6 mb-2">For strategic collaborations and B2B integrations.</p>
+                        <a href="mailto:partnerships@financeport.com" class="text-primary fw-bold text-decoration-none d-block mt-auto">partnerships@financeport.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: FORM & WHY CONTACT -->
+    <section class="bg-alternate section-py reveal">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Contact Form -->
+                <div class="col-lg-7">
+                    <div class="premium-card p-4 p-md-5">
+                        <div class="section-tag mb-4">Send a Message</div>
+                        <h3 class="mb-4">How can we help you today?</h3>
+                        
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" placeholder="John Doe" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" placeholder="john@company.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Mobile Number</label>
+                                    <input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Company Name</label>
+                                    <input type="text" class="form-control" placeholder="Your Company Ltd.">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">I am a:</label>
+                                    <select class="form-select" required>
+                                        <option value="" selected disabled>Select your profile type</option>
+                                        <option value="job-seeker">Job Seeker</option>
+                                        <option value="employer">Employer / Hiring Manager</option>
+                                        <option value="recruiter">Agency Recruiter</option>
+                                        <option value="partner">Potential Partner</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-control" placeholder="What is this regarding?" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-control" rows="5" placeholder="Tell us how we can help..." required></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-premium w-100 py-3 fs-6">Send Message</button>
+                                    <p class="text-center text-muted small mt-3 mb-0"><i class="fa-solid fa-lock text-success me-1"></i> Your information is secure and will never be shared.</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Why Contact Cards -->
+                <div class="col-lg-5">
+                    <h3 class="mb-4 text-balance">Why Contact Finance Port?</h3>
+                    <p class="text-muted mb-4">Our dedicated specialists are trained to assist every stakeholder in the finance recruitment ecosystem.</p>
+                    
+                    <div class="d-flex flex-column gap-4">
+                        <div class="premium-card p-4">
+                            <h4 class="mb-3 d-flex align-items-center gap-2"><i class="fa-solid fa-user-graduate text-accent fs-5"></i> For Job Seekers</h4>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2 d-flex align-items-center"><i class="fa-solid fa-check-circle list-icon-check"></i> <span class="fs-6 fw-medium text-muted">Personalized Career Guidance</span></li>
+                                <li class="mb-2 d-flex align-items-center"><i class="fa-solid fa-check-circle list-icon-check"></i> <span class="fs-6 fw-medium text-muted">Exclusive Job Opportunities</span></li>
+                                <li class="d-flex align-items-center"><i class="fa-solid fa-check-circle list-icon-check"></i> <span class="fs-6 fw-medium text-muted">Resume & Profile Support</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="premium-card p-4">
+                            <h4 class="mb-3 d-flex align-items-center gap-2"><i class="fa-solid fa-building text-secondary fs-5"></i> For Employers</h4>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2 d-flex align-items-center"><i class="fa-solid fa-check-circle list-icon-check"></i> <span class="fs-6 fw-medium text-muted">Accelerated Talent Acquisition</span></li>
+                                <li class="mb-2 d-flex align-items-center"><i class="fa-solid fa-check-circle list-icon-check"></i> <span class="fs-6 fw-medium text-muted">Pre-Vetted Candidate Screening</span></li>
+                                <li class="d-flex align-items-center"><i class="fa-solid fa-check-circle list-icon-check"></i> <span class="fs-6 fw-medium text-muted">Custom Enterprise Hiring Solutions</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="premium-card p-4">
+                            <h4 class="mb-3 d-flex align-items-center gap-2"><i class="fa-solid fa-handshake-simple text-primary fs-5"></i> For Partners</h4>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2 d-flex align-items-center"><i class="fa-solid fa-check-circle list-icon-check"></i> <span class="fs-6 fw-medium text-muted">Strategic Industry Collaborations</span></li>
+                                <li class="d-flex align-items-center"><i class="fa-solid fa-check-circle list-icon-check"></i> <span class="fs-6 fw-medium text-muted">B2B Integration Opportunities</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: RESPONSE COMMITMENT -->
+    <section class="section-py reveal">
+        <div class="container">
+            <div class="text-center section-mb">
+                <h2 class="text-balance">We're Here To Help</h2>
+                <p class="text-muted mx-auto mt-3 fs-5" style="max-width: 600px;">Our commitment to providing the best recruitment experience.</p>
+            </div>
+            
+            <div class="row g-4 text-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4">
+                        <i class="fa-solid fa-stopwatch fs-1 text-accent mb-3"></i>
+                        <h5 class="mb-2">Response within 24 Hours</h5>
+                        <p class="text-muted fs-6 mb-0">Fast, reliable assistance when you need it.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4">
+                        <i class="fa-solid fa-headset fs-1 text-secondary mb-3"></i>
+                        <h5 class="mb-2">Dedicated Support Team</h5>
+                        <p class="text-muted fs-6 mb-0">Real humans providing genuine solutions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4">
+                        <i class="fa-solid fa-shield-halved fs-1 text-primary mb-3"></i>
+                        <h5 class="mb-2">Secure Communication</h5>
+                        <p class="text-muted fs-6 mb-0">Your data and privacy are always protected.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="premium-card p-4">
+                        <i class="fa-solid fa-award fs-1 text-accent-light mb-3"></i>
+                        <h5 class="mb-2">Industry Experts</h5>
+                        <p class="text-muted fs-6 mb-0">Consultants who know the finance sector inside out.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: OFFICE LOCATIONS -->
+    <section class="bg-alternate section-py reveal">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5">
+                    <div class="section-tag mb-4">Our Presence</div>
+                    <h2 class="mb-4">Office Locations</h2>
+                    <p class="text-muted fs-5 mb-5">Operating centrally to serve the nation's top financial hubs and enterprises.</p>
+                    
+                    <div class="d-flex flex-column gap-4">
+                        <div class="premium-card p-4 border-start border-4 border-primary">
+                            <h4 class="mb-1 text-primary">Head Office</h4>
+                            <p class="text-muted fw-bold mb-2">Hyderabad, Telangana</p>
+                            <p class="text-muted fs-6 mb-0">Finance Port Tower, Financial District, Nanakramguda, Hyderabad, TS 500032</p>
+                        </div>
+                        
+                        <div class="premium-card p-4 border-start border-4 border-accent">
+                            <h4 class="mb-1 text-primary">Future Expansion</h4>
+                            <p class="text-muted fw-bold mb-2">Coming Soon To:</p>
+                            <div class="d-flex gap-2 flex-wrap mt-2">
+                                <span class="badge bg-light text-dark border border-secondary p-2">Bangalore</span>
+                                <span class="badge bg-light text-dark border border-secondary p-2">Mumbai</span>
+                                <span class="badge bg-light text-dark border border-secondary p-2">Chennai</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7">
+                    <!-- Map Placeholder -->
+                    <div class="map-placeholder">
+                        <i class="fa-solid fa-map-location-dot fs-1 text-primary mb-3" style="opacity: 0.5;"></i>
+                        <h4 class="text-primary mb-1">Interactive Map</h4>
+                        <p class="text-muted mb-0">Google Maps Integration Placeholder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: FAQS -->
+    <section class="section-py reveal">
+        <div class="container">
+            <div class="text-center section-mb">
+                <div class="section-tag">Support Center</div>
+                <h2 class="text-balance">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        
+                        <!-- FAQ 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    How do I apply for jobs?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Creating an account is completely free. Simply sign up, upload your resume, and let our AI Smart Builder structure your profile. Once your profile is complete, you can use our 1-Click apply feature for any relevant opportunities on the platform.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    How do employers post jobs?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Employers can initiate the process by clicking "Post a Role" or contacting our sales team. We offer tailored enterprise packages that include dedicated account managers, AI screening, and premium employer branding on our portal.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Are employers verified?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes. Every enterprise and firm listed on Finance Port goes through a rigorous verification process. We ensure they meet industry standards, provide competitive compensation, and foster excellent work cultures before they can recruit our candidates.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    How does candidate screening work?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Our proprietary AI matches candidate skills, certifications (like CA, CPA, CMA), and experience directly with the technical requirements of the job description. This ensures employers only see the top percentile of qualified applicants, drastically reducing screening time.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    How can I contact support?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    You can reach our support team directly using the contact form on this page, or by emailing us at info@financeport.com. For urgent matters, registered users have access to a dedicated support hotline within their dashboard.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 11: FINAL CTA -->
+    <section class="cta-section section-py reveal">
+        <div class="container text-center">
+            <h2 class="fs-1 mb-4 text-balance">Ready To Take The Next Step?</h2>
+            <p class="text-muted fs-5 mb-5 text-balance mx-auto" style="max-width: 600px;">
+                Join thousands of leading firms and elite professionals in the most advanced finance recruitment ecosystem.
+            </p>
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <button class="btn btn-premium px-4 py-3">Find Jobs</button>
+                <button class="btn btn-outline-custom px-4 py-3">Hire Talent</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 12: LUXURY FOOTER -->
+    <footer class="section-py" style="padding-bottom: 40px !important;">
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4 text-center text-lg-start">
+                    <a class="navbar-brand mb-4 d-inline-flex justify-content-center justify-content-lg-start text-white" href="index.html" style="color: white !important;">
+                        <div class="brand-dot"></div>
+                        Finance Port
+                    </a>
+                    <p class="pe-lg-5 text-balance text-white-50 fs-6">
+                        The premium operating system for modern finance recruitment. Designed for ambition, engineered for excellence.
+                    </p>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5 class="footer-heading">Platform</h5>
+                    <a href="#" class="footer-link">For Candidates</a>
+                    <a href="#" class="footer-link">For Employers</a>
+                    <a href="#" class="footer-link">Pricing</a>
+                    <a href="#" class="footer-link">Enterprise</a>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5 class="footer-heading">Resources</h5>
+                    <a href="#" class="footer-link">Salary Data</a>
+                    <a href="#" class="footer-link">Career Paths</a>
+                    <a href="#" class="footer-link">Interview Guides</a>
+                    <a href="#" class="footer-link">Certifications</a>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5 class="footer-heading">Company</h5>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Careers</a>
+                    <a href="#" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5 class="footer-heading">Legal</h5>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Security Center</a>
+                </div>
+            </div>
+            <div class="pt-4 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                    <p class="text-white-50 mb-0 text-center" style="font-size: 0.9rem;">&copy; 2026 Finance Port. All rights reserved.</p>
+                    <div class="d-flex gap-4">
+                        <a href="#" class="text-white-50 text-decoration-none footer-social"><i class="fa-brands fa-linkedin fs-5"></i></a>
+                        <a href="#" class="text-white-50 text-decoration-none footer-social"><i class="fa-brands fa-twitter fs-5"></i></a>
+                        <a href="#" class="text-white-50 text-decoration-none footer-social"><i class="fa-brands fa-facebook fs-5"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Scroll Reveal Animation via Intersection Observer
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // 2. Dynamic Navbar Background based on scroll
+            const navbar = document.querySelector('.navbar-premium');
+            const heroSection = document.querySelector('.hero-section');
+            const footer = document.querySelector('footer');
+            
+            window.addEventListener('scroll', () => {
+                const scrollThreshold = heroSection ? heroSection.offsetHeight - 80 : 50;
+                
+                // Check if navbar is touching or overlapping the footer
+                const navbarRect = navbar.getBoundingClientRect();
+                const footerRect = footer ? footer.getBoundingClientRect() : { top: Infinity };
+                const isTouchingFooter = footerRect.top <= navbarRect.bottom;
+                
+                if (window.scrollY > scrollThreshold && !isTouchingFooter) {
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                }
+            });
+
+            // Form Submit Intercept (Prevent Default for Demo)
+            const contactForm = document.querySelector('form');
+            if(contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    // Alert logic could be added here, currently just visual.
+                    contactForm.reset();
+                    alert("Thank you! Your message has been sent successfully.");
+                });
+            }
+        });
+    </script>
+</body>
+</html>
