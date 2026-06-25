@@ -23,8 +23,8 @@
         :root {
             --primary: #0D2B4E;         /* Deep Navy */
             --secondary: #1E63FF;       /* Royal Blue */
-            --accent: #E8A020;          /* Gold */
-            --accent-light: #F5C05C;    /* Light Gold */
+            --accent: #D84000;          /* Deep Orange */
+            --accent-light: #FF8C42;    /* Light Orange */
             --bg-base: #FFFFFF;         /* White */
             --bg-light: #F8FAFC;        /* Light Gray/Blue background */
             
@@ -32,7 +32,7 @@
             --text-muted: #64748B;      /* Slate 500 - Secondary Text */
             
             --border-light: #E2E8F0;    /* Soft borders */
-            --border-accent: rgba(232, 160, 32, 0.3);
+            --border-accent: rgba(216, 64, 0, 0.3);
             
             --radius-lg: 24px;
             --radius-md: 16px;
@@ -41,7 +41,7 @@
             --shadow-sm: 0 4px 6px -1px rgba(13, 43, 78, 0.05);
             --shadow-md: 0 10px 30px -5px rgba(13, 43, 78, 0.08);
             --shadow-lg: 0 20px 40px -10px rgba(13, 43, 78, 0.12);
-            --shadow-glow: 0 0 20px rgba(232, 160, 32, 0.3);
+            --shadow-glow: 0 0 20px rgba(216, 64, 0, 0.3);
             
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -75,7 +75,7 @@
         h3 { font-size: clamp(1.3rem, 3vw, 1.75rem); margin-bottom: 1rem; }
 
         .text-gradient {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            background: linear-gradient(135deg, #D84000 0%, #FF7A4D 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -102,7 +102,7 @@
         /* Buttons */
         .btn-premium {
             background: var(--accent);
-            color: var(--primary);
+            color: white;
             border: 1px solid var(--accent);
             border-radius: var(--radius-md);
             padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 28px);
@@ -114,7 +114,7 @@
             align-items: center;
             white-space: nowrap;
         }
-        .btn-premium:hover { background: #d18f1a; border-color: #d18f1a; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(13, 43, 78, 0.2); color: white; }
+        .btn-premium:hover { background: #A83000; border-color: #A83000; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(13, 43, 78, 0.2); color: white; }
 
         .btn-outline-custom {
             background: transparent;
