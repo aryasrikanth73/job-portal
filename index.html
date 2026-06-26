@@ -67,7 +67,7 @@
             color: var(--primary);
             letter-spacing: -0.02em;
         }
-
+        
         h2 { font-size: clamp(1.75rem, 4vw, 2.75rem) !important; }
 
         .text-gradient {
@@ -230,16 +230,62 @@
         ========================================= */
         .hero-section {
             background-color: var(--primary);
-            min-height: 100vh;
+            height: 100vh; /* Force exact viewport height */
+            min-height: 600px; /* Prevent collapse on extremely tiny screens */
             display: flex;
             align-items: center;
             position: relative;
-            padding-top: clamp(100px, 15vh, 140px);
-            padding-bottom: clamp(60px, 10vh, 100px);
+            padding-top: 80px; /* Clear fixed navbar */
+            padding-bottom: 0;
             overflow: hidden;
             color: white;
         }
+
+        .hero-container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: clamp(20px, 4vh, 50px);
+        }
         
+        /* NEW HERO TEXT STYLES */
+        .hero-badge {
+            background: white;
+            color: var(--secondary); /* Blue color matching the image */
+            padding: clamp(6px, 1.5vw, 10px) clamp(16px, 3vw, 24px);
+            border-radius: 50px;
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero-title {
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .hero-title-line1 {
+            display: block;
+            font-size: clamp(1.2rem, 4vw, 4.5rem);
+            white-space: nowrap; /* Forces exactly 1 line */
+            color: white;
+        }
+
+        .hero-title-line2 {
+            display: block;
+            font-size: clamp(1.8rem, 6vw, 5.5rem);
+            white-space: nowrap; /* Forces exactly 1 line */
+            color: var(--accent);
+        }
+                
         .hero-pattern {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -250,33 +296,173 @@
             pointer-events: none;
         }
 
+        /* Ambient Glowing Orbs */
+        .hero-glow {
+            position: absolute;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(216, 64, 0, 0.15) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: pulseGlow 8s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* 100% Responsive Grid System that dynamically fills remaining vertical space */
         .node-container {
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(16px, 4vw, 24px);
+            display: block;
             width: 100%;
-            height: auto;
-            padding: clamp(20px, 5vw, 40px) 0;
+            max-width: 1000px;
+            flex-grow: 1; /* Automatically expands to fill space below text */
+            margin: clamp(10px, 2vh, 30px) auto 20px auto;
             z-index: 10;
         }
 
+        .svg-lines {
+            display: block;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .svg-lines path {
+            stroke: rgba(255, 255, 255, 0.15); /* Light visible line on dark background */
+            stroke-width: 2.5;
+            fill: none;
+            stroke-dasharray: 8 8;
+            animation: dash 25s linear infinite;
+        }
+
         .center-node {
-            width: clamp(140px, 28vw, 180px);
-            height: clamp(140px, 28vw, 180px);
-            background: var(--accent);
-            border: 3px solid rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: clamp(110px, 20vw, 180px);
+            height: clamp(110px, 20vw, 180px);
+            background: linear-gradient(135deg, var(--accent) 0%, #FF6B00 100%);
+            border: clamp(2px, 0.5vw, 4px) solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 10;
-            box-shadow: 0 0 50px rgba(216, 64, 0, 0.4);
             text-align: center;
-            position: relative;
-            order: 1; 
+            transition: all 0.3s ease;
+        }
+        
+        /* Central Pulse Ripple Effect */
+        .center-node::before {
+            content: '';
+            position: absolute;
+            top: -10%; left: -10%; right: -10%; bottom: -10%;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            opacity: 0;
+            animation: ripple 2.5s cubic-bezier(0.21, 0.53, 0.56, 0.8) infinite;
+            z-index: -1;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+
+        .center-node:hover {
+            box-shadow: 0 0 80px rgba(216, 64, 0, 0.9);
+            border-color: white;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        
+        .center-node span { 
+            font-weight: 800; 
+            font-size: clamp(0.9rem, 2vw, 1.4rem); 
+            color: white;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .orbit-node {
+            position: absolute;
+            padding: clamp(8px, 1.5vw, 16px) clamp(12px, 3vw, 24px);
+            border-radius: 40px;
+            
+            /* Premium Glassmorphism */
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.25); /* Top highlight */
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2), inset 0 0 12px rgba(255, 255, 255, 0.03);
+            
+            font-size: clamp(0.65rem, 1.8vw, 1rem);
+            font-weight: 600;
+            color: white;
+            white-space: nowrap; 
+            z-index: 2;
+            transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s ease;
+            transform: translate(-50%, -50%); /* Absolute centering anchor */
+        }
+
+        .orbit-node:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) scale(1.05); /* Maintain center point on scale */
+        }
+
+        /* Absolute Positions matching exact SVG path endpoints to guarantee perfect alignment */
+        .on-1 { left: 20%; top: 25%; animation: floatTL 5s ease-in-out infinite; }
+        .on-2 { left: 80%; top: 25%; animation: floatTR 6s ease-in-out infinite reverse; }
+        .on-3 { left: 25%; top: 75%; animation: floatBL 7s ease-in-out infinite; }
+        .on-4 { left: 75%; top: 75%; animation: floatBR 5.5s ease-in-out infinite reverse; }
+
+        @keyframes dash { to { stroke-dashoffset: 1000; } }
+        
+        /* Animating 'top' coordinates directly ensures it never breaks the translate(-50%,-50%) centering */
+        @keyframes floatTL { 0%, 100% { top: 25%; } 50% { top: calc(25% - 10px); } }
+        @keyframes floatTR { 0%, 100% { top: 25%; } 50% { top: calc(25% - 10px); } }
+        @keyframes floatBL { 0%, 100% { top: 75%; } 50% { top: calc(75% - 10px); } }
+        @keyframes floatBR { 0%, 100% { top: 75%; } 50% { top: calc(75% - 10px); } }
+
+        .svg-lines {
+            display: block;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .svg-lines path {
+            stroke: rgba(255, 255, 255, 0.15); /* Light visible line on dark background */
+            stroke-width: 2.5;
+            fill: none;
+            stroke-dasharray: 8 8;
+            animation: dash 25s linear infinite;
+        }
+
+        .center-node {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: clamp(90px, 20vw, 180px);
+            height: clamp(90px, 20vw, 180px);
+            background: var(--accent);
+            border: clamp(2px, 0.5vw, 4px) solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            box-shadow: 0 0 clamp(20px, 5vw, 50px) rgba(216, 64, 0, 0.4);
+            text-align: center;
             transition: box-shadow 0.3s ease, border-color 0.3s ease;
         }
         
@@ -287,12 +473,14 @@
         
         .center-node span { 
             font-weight: 800; 
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem); 
+            font-size: clamp(0.7rem, 2vw, 1.4rem); 
             color: white;
+            line-height: 1.1;
         }
         
         .orbit-node {
-            padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 24px);
+            position: absolute;
+            padding: clamp(6px, 1.5vw, 16px) clamp(8px, 2vw, 24px);
             border-radius: 30px;
             /* Premium Dark Glassmorphism */
             background: rgba(255, 255, 255, 0.06);
@@ -300,87 +488,29 @@
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-size: clamp(0.55rem, 1.5vw, 1.1rem);
             font-weight: 600;
             color: white;
             text-align: center;
-            width: min(100%, 320px); 
-            white-space: normal; 
-            position: relative;
+            width: max-content; 
+            max-width: clamp(110px, 26vw, 240px); /* Controlled width prevents arbitrary expansion */
+            white-space: normal;
             z-index: 2;
+            transform: translate(-50%, -50%) scale(1); /* Absolute centering anchor */
             transition: transform 0.4s ease, border-color 0.4s ease;
         }
 
         .orbit-node:hover {
-            transform: scale(1.05);
+            transform: translate(-50%, -50%) scale(1.05);
             border-color: var(--accent-light);
             background: rgba(255, 255, 255, 0.1);
         }
 
-        .on-1 { order: 2; }
-        .on-4 { order: 3; }
-        .on-2 { order: 4; }
-        .on-3 { order: 5; }
-
-        .mobile-flow-line {
-            position: absolute;
-            top: 0; bottom: 0; left: 50%;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), var(--accent), rgba(255,255,255,0.2), transparent);
-            transform: translateX(-50%);
-            z-index: 0;
-        }
-
-        .svg-lines { display: none; }
-
-        /* Tablet Landscape & Desktop Layout - 100% Responsive Grid System */
-        @media (min-width: 992px) {
-            .node-container {
-                display: block; 
-                padding: 0;
-                width: 100%;
-                max-width: 1000px;
-                aspect-ratio: 1000 / 600; /* Maps directly to SVG viewBox scaling */
-                min-height: 450px;
-                margin: 0 auto;
-            }
-            .mobile-flow-line { display: none; }
-            .svg-lines {
-                display: block;
-                position: absolute;
-                top: 0; left: 0; width: 100%; height: 100%;
-                z-index: 1;
-                pointer-events: none;
-            }
-            .svg-lines path {
-                stroke: rgba(255, 255, 255, 0.15); /* Light visible line on dark background */
-                stroke-width: 2.5;
-                fill: none;
-                stroke-dasharray: 8 8;
-                animation: dash 25s linear infinite;
-            }
-            .center-node {
-                position: absolute;
-                top: 50%; left: 50%;
-                transform: translate(-50%, -50%);
-                margin: 0;
-            }
-            .orbit-node {
-                position: absolute;
-                width: 240px; /* Controlled width prevents arbitrary expansion */
-                transform: translate(-50%, -50%) scale(1); /* Absolute centering anchor */
-            }
-            .orbit-node:hover {
-                /* Preserve absolute centering anchor while adding scale */
-                transform: translate(-50%, -50%) scale(1.05);
-            }
-            
-            /* Positions matching exact SVG path endpoints to guarantee alignment */
-            .on-1 { left: 20%; top: 30%; animation: float1 5s ease-in-out infinite; }
-            .on-2 { left: 80%; top: 30%; animation: float2 6s ease-in-out infinite reverse; }
-            .on-3 { left: 30%; top: 75%; animation: float3 7s ease-in-out infinite; }
-            .on-4 { left: 70%; top: 75%; animation: float4 5.5s ease-in-out infinite reverse; }
-        }
+        /* Positions matching exact SVG path endpoints to guarantee alignment across all devices */
+        .on-1 { left: 20%; top: 30%; animation: float1 5s ease-in-out infinite; }
+        .on-2 { left: 80%; top: 30%; animation: float2 6s ease-in-out infinite reverse; }
+        .on-3 { left: 30%; top: 75%; animation: float3 7s ease-in-out infinite; }
+        .on-4 { left: 70%; top: 75%; animation: float4 5.5s ease-in-out infinite reverse; }
 
         @keyframes dash { to { stroke-dashoffset: 1000; } }
         
@@ -390,9 +520,6 @@
         @keyframes float3 { 0%, 100% { top: 75%; } 50% { top: calc(75% - 15px); } }
         @keyframes float4 { 0%, 100% { top: 75%; } 50% { top: calc(75% - 15px); } }
 
-        /* =========================================
-        SECTION 4: TRENDING OPPORTUNITIES
-        ========================================= */
         .section-tag {
             display: inline-block;
             padding: 6px 16px;
@@ -406,126 +533,9 @@
             margin-bottom: 16px;
             border: 1px solid var(--border-accent);
         }
-        
-        .opportunity-card {
-            padding: clamp(20px, 4vw, 32px);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        .opp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 24px;
-            gap: 12px;
-        }
-        .company-logo-placeholder {
-            width: clamp(48px, 8vw, 56px);
-            height: clamp(48px, 8vw, 56px);
-            border-radius: 12px;
-            background: var(--bg-light);
-            border: 1px solid var(--border-light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
-            flex-shrink: 0;
-        }
-        .velocity-badge {
-            background: rgba(30, 99, 255, 0.1);
-            color: var(--secondary);
-            padding: 4px clamp(10px, 2vw, 14px);
-            border-radius: 12px;
-            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
-            font-weight: 600;
-            text-align: right;
-        }
-        .job-title {
-            font-size: clamp(1.15rem, 2.5vw, 1.3rem);
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-        .job-meta {
-            color: var(--text-muted);
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
-            margin-bottom: 24px;
-            font-weight: 500;
-        }
-        .skill-match {
-            margin-top: auto;
-            background: var(--bg-light);
-            padding: clamp(16px, 3vw, 20px);
-            border-radius: 12px;
-            border: 1px solid var(--border-light);
-        }
-        .match-bar-bg {
-            height: 6px;
-            background: #E2E8F0;
-            border-radius: 3px;
-            margin-top: 8px;
-            overflow: hidden;
-        }
-        .match-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--secondary), var(--primary));
-            border-radius: 3px;
-        }
 
         /* =========================================
-        SECTION 5: PREMIUM EMPLOYERS
-        ========================================= */
-        .employer-card {
-            padding: clamp(24px, 5vw, 40px);
-            text-align: center;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .emp-logo {
-            width: clamp(70px, 12vw, 90px);
-            height: clamp(70px, 12vw, 90px);
-            border-radius: 20px;
-            background: white;
-            border: 1px solid var(--border-light);
-            margin: 0 auto 24px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--primary);
-            box-shadow: var(--shadow-sm);
-            flex-shrink: 0;
-        }
-        .emp-stats {
-            display: flex;
-            justify-content: center;
-            gap: clamp(16px, 3vw, 32px);
-            margin-top: auto;
-            padding-top: 24px;
-            border-top: 1px solid var(--border-light);
-            flex-wrap: wrap;
-        }
-        .emp-stat-item h4 {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            margin-bottom: 4px;
-            color: var(--secondary);
-        }
-        .emp-stat-item p {
-            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
-            color: var(--text-muted);
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-        }
-
-        /* =========================================
-        SECTION 6: CAREER INTELLIGENCE (BENTO)
+        CAREER INTELLIGENCE (BENTO)
         ========================================= */
         .bento-grid {
             display: grid;
@@ -569,7 +579,7 @@
         }
 
         /* =========================================
-        SECTION 7: STATS
+        STATS SECTION
         ========================================= */
         .stats-section {
             background-color: var(--primary);
@@ -590,7 +600,7 @@
         }
 
         /* =========================================
-        SECTION 8 & 9: MOBILE & CTA
+        MOBILE & CTA
         ========================================= */
         .cta-section {
             background: radial-gradient(circle at center, var(--bg-light) 0%, var(--bg-base) 100%);
@@ -629,8 +639,7 @@
             max-width: 120px;
             height: clamp(15px, 4vw, 25px);
             background: #E2E8F0;
-            border-bottom-left-radius: 16px;
-            border-bottom-right-radius: 16px;
+            border-bottom-left-radius: 16px;            border-bottom-right-radius: 16px;
             z-index: 10;
         }
         .mobile-notification {
@@ -722,13 +731,12 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="job-listings.html">Opportunities</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
                 <div class="d-flex flex-column flex-lg-row gap-3 mt-3 mt-lg-0">
-                    <button class="btn btn-outline-custom w-100 w-lg-auto">Sign In</button>
-                    <button class="btn btn-premium w-100 w-lg-auto">Post a Role</button>
+                    <a href="jobseeker/login.html" class="btn btn-outline-custom w-100 w-lg-auto text-center">Sign In</a>
+                    <a href="employer/login.html" class="btn btn-premium w-100 w-lg-auto text-center">Post a Role</a>
                 </div>
             </div>
         </div>
@@ -737,23 +745,26 @@
     <!-- SECTION 1: HERO (Replaced with Finance Core Ecosystem Graphics) -->
     <section class="hero-section text-center">
         <div class="hero-pattern"></div>
-        <div class="container relative z-10 w-100 d-flex justify-content-center align-items-center">
+        <div class="hero-glow"></div>
+        
+        <div class="container relative z-10 w-100 hero-container">
+            
+            <div class="hero-badge mb-3">Finance Recruitment OS</div>
+            
+            <h1 class="hero-title mb-4">
+                <span class="hero-title-line1">The Future of Finance Hiring</span>
+                <span class="hero-title-line2">Starts Here.</span>
+            </h1>
             
             <div class="node-container">
-                <div class="mobile-flow-line"></div>
-                
                 <svg class="svg-lines" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
-                    <!-- Top Left Node Path -->
-                    <path d="M500,300 Q350,150 200,180" />
-                    <!-- Top Right Node Path -->
-                    <path d="M500,300 Q650,150 800,180" />
-                    <!-- Bottom Left Node Path -->
-                    <path d="M500,300 Q350,450 300,450" />
-                    <!-- Bottom Right Node Path -->
-                    <path d="M500,300 Q650,450 700,450" />
+                    <path d="M200,150 Q350,150 500,300" />
+                    <path d="M800,150 Q650,150 500,300" />
+                    <path d="M250,450 Q375,450 500,300" />
+                    <path d="M750,450 Q625,450 500,300" />
                 </svg>
 
-                <a href="login.html" class="center-node text-decoration-none">
+                <a href="jobseeker/login.html" class="center-node text-decoration-none">
                     <span>Apply Here</span>
                 </a>
 
@@ -769,15 +780,15 @@
     <!-- CAREER INTELLIGENCE (BENTO) -->
     <section class="bg-alternate section-py">
         <div class="container reveal">
-            <div class="section-tag mb-4">Intelligence Stack</div>
-            <h2 class="section-mb text-balance">Beyond Job Listings.</h2>
+            <div class="section-tag mb-4">Platform Features</div>
+            <h2 class="section-mb text-balance">Built for Finance Professionals.</h2>
 
             <div class="bento-grid">
                 <div class="premium-card bento-item bento-col-8">
                     <div>
-                        <div class="bento-icon"><i class="fa-solid fa-file-invoice"></i></div>
-                        <h3>Smart Resume Builder</h3>
-                        <p class="text-muted mt-3 fs-6" style="max-width: 90%;">Upload your raw accounting/finance experience. Our system structures it into a high-converting, ATS-optimized profile that highlights your certifications and domain expertise.</p>
+                        <div class="bento-icon"><i class="fa-solid fa-handshake"></i></div>
+                        <h3>Direct Employer Access</h3>
+                        <p class="text-muted mt-3 fs-6" style="max-width: 90%;">Skip the middleman. Our platform connects your verified CA, CMA, or CPA credentials directly with active hiring managers at top-tier firms and growing enterprises.</p>
                     </div>
                 </div>
                 <div class="premium-card bento-item bento-col-4">
@@ -842,7 +853,7 @@
                     Drop the outdated spreadsheets. Experience a modern recruitment workflow designed specifically for the accounting and finance industry.
                 </p>
                 <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3">
-                    <button class="btn btn-premium px-4 py-3">Start Hiring Today</button>
+                    <a href="employer/login.html" class="btn btn-premium px-4 py-3 text-center">Start Hiring Today</a>
                     <button class="btn btn-outline-custom px-4 py-3">Book Demo</button>
                 </div>
             </div>
@@ -892,6 +903,11 @@
                     <a href="index.html" class="footer-link">Home</a>
                     <a href="about.html" class="footer-link">About Us</a>
                     <a href="contact.html" class="footer-link">Contact</a>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5 class="footer-heading">Login</h5>
+                    <a href="jobseeker/login.html" class="footer-link">Job Seeker Login</a>
+                    <a href="employer/login.html" class="footer-link">Employer Login</a>
                 </div>
                 <div class="col-lg-2 col-6">
                     <h5 class="footer-heading">Legal</h5>
